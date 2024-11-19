@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y \
     mkdir -p /var/ss && \
     useradd -m -d /home/Makemake -s /bin/bash Makemake && \
     echo "Makemake:Makemake" | chpasswd && \
+    useradd -m -d /home/Admin -s /bin/bash Admin && \
+    echo "Admin:Admin" | chpasswd && \
     usermod -aG gasgiants pluto && \
     usermod -aG sudo pluto && \
     usermod -aG sudo Makemake && \
@@ -85,8 +87,8 @@ RUN touch /var/ss/eventhorizon /var/ss/singularity && \
     chmod 640 /var/ss/eventhorizon
 
 # Set the Pluto user to run the container
-USER pluto
-WORKDIR /home/pluto
+USER Admin
+WORKDIR /home/Admin
 
 # Default command to run the program
 CMD ["/bin/bash"]

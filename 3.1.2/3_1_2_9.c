@@ -44,13 +44,13 @@ int main() {
     } else {
         // Append the JANEFLAG to '.bashrc' if it already exists
         printf("Appending the JANEFLAG to '.bashrc' for 'jane'...\n");
-        execute_command("echo 'export JANEFLAG=\"HD{Taqlid_qilish_bu_super!}\"' | sudo sh -c 'cat >> /home/jane/.bashrc'");
+        execute_command("echo 'export JANEFLAG=\"HD{Taqlid_qilish_bu_super!}\"' | sudo tee -a /home/jane/.bashrc > /dev/null");
         execute_command("sudo chown jane:jane /home/jane/.bashrc");
     }
 
-    // Switch to user 'jane' and retrieve the JANEFLAG
-    printf("Switching to user 'jane' and retrieving the JANEFLAG...\n");
-    execute_command("sudo -i -u jane bash -c 'source ~/.bashrc; echo $JANEFLAG'");
+    // Test if JANEFLAG is properly set
+    printf("Switching to user 'jane' and checking the JANEFLAG...\n");
+    execute_command("sudo -i -u jane bash -c 'source ~/.bashrc; env | grep JANEFLAG'");
 
     return 0;
 }
