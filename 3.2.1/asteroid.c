@@ -7,7 +7,7 @@
 int main() {
     // Get the current user ID
     uid_t uid = getuid();
-    
+
     // Get the passwd struct for the current user
     struct passwd *pw = getpwuid(uid);
 
@@ -16,13 +16,13 @@ int main() {
         return 1;
     }
 
-    // Check if the user is "Pluto"
-    if (strcmp(pw->pw_name, "Pluto") == 0) {
-        printf("User is Pluto. Displaying the flag...\n");
+    // Check if the user is "pluto"
+    if (strcmp(pw->pw_name, "pluto") == 0) {
+        printf("User is pluto. Displaying the flag...\n");
         // Print the flag
         printf("Flag: HD{Koinot_juda_ham_kattaaaaa!}\n");
     } else {
-        printf("Access denied. You must be user 'Pluto' to see the flag.\n");
+        printf("Access denied. You must be user 'pluto' to see the flag.\n");
         return 1;
     }
 

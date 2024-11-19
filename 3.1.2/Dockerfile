@@ -38,8 +38,10 @@ RUN echo "john ALL=(ALL) NOPASSWD: /usr/bin/touch" >> /etc/sudoers
 # Add Cathy to sudoers to run sudo without a password
 RUN echo "cathy ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-# Ensure that only Bill, Cathy, and Senji are in the sudo group, making them the only sudo users
-RUN deluser john sudo  # Remove John from sudo group if mistakenly added
+# Remove John from sudo group if mistakenly added
+RUN id -nG john | grep -qw "sudo" && deluser john sudo || echo "john is not in sudo group"
+
+# Ensure that only Bill, Cathy, and Senji are in the sudo group
 RUN usermod -aG sudo bill
 RUN usermod -aG sudo cathy
 RUN usermod -aG sudo senji
