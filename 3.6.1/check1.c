@@ -1,24 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
-    // Path to the flag file
-    const char *flag_file = "/root/flag.txt";
-    const char *flag_content = "HD{Anacron_cronga_o‘xshaydi,_lekin_tizim_vaqti-vaqti_bilan_o‘chirilishini_faraz_qiladi}";
+    FILE *fp;
+    char line[256];
+    int cron_found = 0;
 
-    // Create and write the flag to the file
-    FILE *file = fopen(flag_file, "w");
-    if (file == NULL) {
-        perror("Error opening file");
-        return EXIT_FAILURE;
+    // Execute 'crontab -l' to list user cron jobs
+    fp = popen("crontab -l", "r");
+    if (fp == NULL) {
+        perror("Failed to run crontab -l");
+        return 1;
     }
-    fprintf(file, "%s\n", flag_content);
-    fclose(file);
 
-    return EXIT_SUCCESS;
+    // Search for the specific cron job entry
+    while (fgets(line, sizeof(line), fp) != NULL) {
+        if (strstr(line, "37 13 * * 3")) {
+            printf("HD{Anacron_cronga_o‘xshaydi,_lekin_tizim_vaqti-vaqti_bilan_o‘chirilishini_faraz_qiladi}\n");
+            cron_found = 1;
+            break;
+        }
+    }
+
+    if (!cron_found) {
+        printf("Cron job for every Wednesday at 13:37 not found.\n");
+    }
+
+    fclose(fp);
+    return 0;
 }
-
-// mkdir -p /root/cron_task
-// cd /root/cron_task
-// crontab -e => 37 13 * * 3 /root/cron/check1
-

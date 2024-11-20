@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
 
 # Create user phoenix
 RUN useradd -m -s /bin/bash phoenix && \
-    echo "phoenix:phoenix123" | chpasswd
+    echo "phoenix:Chronos" | chpasswd
 
 # Create root password (Greek word as per the requirement)
 RUN echo "root:Chronos" | chpasswd
@@ -37,20 +37,18 @@ RUN echo "root:Chronos" | chpasswd
 # Create necessary directories
 RUN mkdir -p /root/cron && mkdir -p /home/phoenix
 
-RUN echo "*/1 * * * * echo 'HD{Cron_so''zi_\"Chronos\"dan_kelib_chiqadi,_bu_vaqt_degani}' > /root/flag_cron.txt" >> /etc/crontab
+# Create a single crontab file containing both jobs
+RUN echo "*/1 * * * * echo 'HD{Cron_so''zi_\"Chronos\"dan_kelib_chiqadi,_bu_vaqt_degani}' > /root/flag_cron.txt" > /root/cronjobs && \
+    echo "* * * * * echo 'The Playing With Fire cronjob is dangerous!' > /var/bin/dangerous.txt" >> /root/cronjobs && \
+    crontab /root/cronjobs
 
+# Copy the check cron C programs (to be compiled)
+COPY check1.c /root/check1.c
+COPY check2.c /root/check2.c
 
-# Create the binaries check1, check2, and play_with_fire.sh as C programs
-COPY check1.c /root/cron/check1.c
-COPY check2.c /root/cron/check2.c
+# Compile the C programs
+RUN gcc /root/check1.c -o /root/check1 && rm -f /root/check1.c
+RUN gcc /root/check2.c -o /root/check2  && rm -f /root/check2.c
 
-
-# Compile the C files to create binaries
-RUN gcc /root/cron/check1.c -o /root/cron/check1 && \
-    gcc /root/cron/check2.c -o /root/cron/check2
-
-# Make the shell script executable
-
-
-# Start cron service"
-CMD [ "bash" ]
+# Start the cron service and keep the container running
+CMD service cron start && bash
