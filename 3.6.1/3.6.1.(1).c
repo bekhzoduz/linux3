@@ -18,11 +18,5 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-// sudo adduser phoenix
-// sudo mkdir -p /root/cron_task
-// cd /root/cron_task
-// gcc -o get_flag get_flag.c
-// sudo su - phoenix
-// crontab -e => * * * * * /root/cron_task/get_flag
 
 
