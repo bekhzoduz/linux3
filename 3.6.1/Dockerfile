@@ -50,5 +50,9 @@ COPY check2.c /root/check2.c
 RUN gcc /root/check1.c -o /root/check1 && rm -f /root/check1.c
 RUN gcc /root/check2.c -o /root/check2  && rm -f /root/check2.c
 
+USER phoenix
+
+WORKDIR /home/phoenix
+
 # Start the cron service and keep the container running
 CMD service cron start && bash
