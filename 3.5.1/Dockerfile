@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Zarur paketlarni o'rnatish
+# Install necessary packages
 RUN apt-get update && apt-get install -y \
     rsync \
     curl \
@@ -22,5 +22,28 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     gcc \
     sudo \
+    e2fsprogs \
+    mtools \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Create the user 'phoenix' and set up necessary directories
+RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
+    echo "phoenix:rebirth" | chpasswd && \
+    usermod -aG sudo phoenix && \
+    mkdir -p /root && \
+    echo "root:hack123" | chpasswd
+
+
+# Copy the flag image into the mounted ext4 file system
+COPY OSpackage_1.0-1.deb /home/phoenix/OSpackage_1.0-1.deb
+
+
+# Switch to the phoenix user
+USER phoenix
+
+# Set the working directory
+WORKDIR /home/phoenix
+
+# Set the entrypoint to bash
+CMD [ "/bin/bash" ]

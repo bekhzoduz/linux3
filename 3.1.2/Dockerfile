@@ -25,41 +25,35 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Create users with specific passwords and add them to sudo group
+# Foydalanuvchilarni yaratish va sozlash
 RUN useradd -m bill && echo "bill:bill" | chpasswd && usermod -aG sudo bill
 RUN useradd -m cathy && echo "cathy:cathy" | chpasswd && usermod -aG sudo cathy
 RUN useradd -m senji && echo "senji:senji" | chpasswd && usermod -aG sudo senji
 RUN useradd -m john && echo "john:john" | chpasswd
 RUN useradd -m jane && echo "jane:jane" | chpasswd
 
-# Add John to the sudoers file to allow him to run /usr/bin/touch as root without a password
+# John uchun sudo huquqlari cheklangan
 RUN echo "john ALL=(ALL) NOPASSWD: /usr/bin/touch" >> /etc/sudoers
 
-# Add Cathy to sudoers to run sudo without a password
+# Cathy uchun to'liq sudo huquqlari
 RUN echo "cathy ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-# Remove John from sudo group if mistakenly added
+# John sudo guruhidan chiqarilgan bo'lsa, tekshirish
 RUN id -nG john | grep -qw "sudo" && deluser john sudo || echo "john is not in sudo group"
 
-# Ensure that only Bill, Cathy, and Senji are in the sudo group
+# Sudo guruhiga faqat kerakli foydalanuvchilarni qo'shish
 RUN usermod -aG sudo bill
 RUN usermod -aG sudo cathy
 RUN usermod -aG sudo senji
 
-# Copy the C source file to the container and compile it
-COPY ./3_1_2_9.c /home/jane/3_1_2_9.c
+# "jane" uchun muhit o'zgaruvchisini qo'shish
+RUN echo 'export JANEFLAG="HD{Taqlid_qilish_bu_super!}"' >> /home/jane/.bashrc && \
+    chown jane:jane /home/jane/.bashrc
 
-# Compile the C file
-RUN gcc /home/jane/3_1_2_9.c -o /home/jane/3.1.2.9 && rm -f /home/jane/3_1_2_9.c
 
-# Run the compiled binary to create the necessary files during build
-RUN /home/jane/3.1.2.9 && rm -f /home/jane/3.1.2.9
-
-# Switch to 'cathy' user
+# Standart foydalanuvchi sifatida 'cathy'ni o'rnatish
 USER cathy
-
-# Set the working directory to '/home/cathy'
 WORKDIR /home/cathy
 
-# Set the default command to bash
+# Standart buyruq
 CMD ["/bin/bash"]

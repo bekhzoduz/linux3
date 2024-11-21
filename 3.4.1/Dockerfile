@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 COPY ./watchman.c /home/phoenix/watchman.c
 
 # Compile the binary
-RUN gcc /home/phoenix/watchman.c -o /home/phoenix/watchman && chmod +x /home/phoenix/watchman
+RUN gcc /home/phoenix/watchman.c -o /home/phoenix/watchman && chmod +x /home/phoenix/watchman && rm /home/phoenix/watchman.c
 
 # Set workdir and user
 WORKDIR /home/phoenix
