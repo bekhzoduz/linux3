@@ -34,13 +34,6 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
     mkdir -p /root && \
     echo "root:hack123" | chpasswd
 
-# Create an ext4 file system image
-RUN dd if=/dev/zero of=/root/ext4.img bs=1M count=100 && \
-    mkfs.ext4 /root/ext4.img
-
-# Create a mount point and mount the ext4 file system image
-RUN mkdir -p /mnt/ext4 && \
-    mount -o loop /root/ext4.img /mnt/ext4
 
 # Copy the flag image into the mounted ext4 file system
 COPY flag.img.1 /mnt/ext4/flash.img
