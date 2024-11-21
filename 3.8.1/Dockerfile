@@ -45,8 +45,7 @@ RUN mkdir -p /mnt/ext4 && \
 # Copy the flag image into the mounted ext4 file system
 COPY flag.img.1 /mnt/ext4/flash.img
 
-# Unmount the ext4 file system image
-RUN umount /mnt/ext4
+
 
 # Switch to the phoenix user
 USER phoenix
