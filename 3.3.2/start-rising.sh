@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Start the process in the background
+# Start the rising process in the background
 /usr/bin/rising_process &
 
-# Open an interactive shell
-exec bash
+# Start the interactive shell (bash)
+exec /bin/bash 

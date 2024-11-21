@@ -29,23 +29,26 @@ RUN apt-get update && apt-get install -y \
 RUN useradd -m phoenix && echo "phoenix:rebirth" | chpasswd && usermod -aG sudo phoenix
 RUN echo "phoenix ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && mkdir -p /var/rising
 
-# Copy the C source code for the rising process
+# Copy C source files into the container
+COPY ./shell_PID_check.c /home/phoenix/shell_PID_check.c
+COPY ./remember.c /home/phoenix/remember.c
 COPY ./rising_process.c /home/phoenix/rising_process.c
+COPY ./ashes.c /home/phoenix/ashes.c
 
-# Copy the startup script
-COPY ./start-rising.sh /usr/bin/start-rising.sh
-
-# Compile the C file
+# Compile the C files with correct architecture
+RUN gcc -m64 /home/phoenix/shell_PID_check.c -o /home/phoenix/shell_PID_check && rm -f /home/phoenix/shell_PID_check.c
+RUN gcc -m64 /home/phoenix/ashes.c -o /home/phoenix/ashes && rm -f /home/phoenix/ashes.c
+RUN gcc -m64 /home/phoenix/remember.c -o /usr/bin/remember && rm -f /home/phoenix/remember.c
 RUN gcc -m64 /home/phoenix/rising_process.c -o /usr/bin/rising_process && rm -f /home/phoenix/rising_process.c
 
-# Make the startup script executable
-RUN chmod +x /usr/bin/start-rising.sh
+# Ensure that 'remember' runs in the background when phoenix logs in
+RUN echo "/usr/bin/remember &" >> /etc/bash.bashrc
 
-# Switch to the phoenix user
+# Set the default user to phoenix for running processes
 USER phoenix
 
 # Set the working directory
 WORKDIR /home/phoenix
 
-# Set the default command to the startup script
-CMD ["/usr/bin/start-rising.sh"]
+# Start the rising_process in the background automatically when the container starts
+CMD ["bash"]
