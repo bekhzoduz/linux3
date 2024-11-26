@@ -27,8 +27,13 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-    RUN groupadd -f Pluto && groupadd -f gasgiants && groupadd -f dwarfs && groupadd -f icegiants && groupadd -f terrestrials && groupadd -f hypotheticals && \
-    useradd -m -d /home/Pluto -s /bin/bash -g Pluto Pluto && \
+    RUN groupadd -f Pluto && \
+    groupadd -f gasgiants && \
+    groupadd -f dwarfs && \
+    groupadd -f icegiants && \
+    groupadd -f terrestrials && \
+    groupadd -f hypotheticals && \
+    useradd -m -d /home/Pluto -s /bin/bash Pluto && \
     useradd -m -d /home/Ceres -s /bin/bash -g Ceres Ceres && \
     useradd -m -d /home/Neptune -s /bin/bash -g Neptune Neptune && \
     useradd -m -d /home/Uranus -s /bin/bash -g Uranus Uranus && \
