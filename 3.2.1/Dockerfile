@@ -63,24 +63,24 @@ RUN apt-get update && apt-get install -y \
     echo "Makemake:Makemake" | chpasswd && \
     useradd -m -d /home/Admin -s /bin/bash Admin && \
     echo "Admin:Admin" | chpasswd && \
-    usermod -aG sudo Pluto && \
-    usermod -aG sudo Makemake && \
-    usermod -aG gasgiants Neptune && \
-    usermod -aG gasgiants Uranus && \
-    usermod -aG gasgiants Saturn && \
-    usermod -aG gasgiants Jupiter && \
-    usermod -aG icegiants Neptune && \
-    usermod -aG icegiants Uranus && \
-    usermod -aG dwarfs Pluto && \
-    usermod -aG dwarfs Ceres && \
-    usermod -aG dwarfs Makemake && \
-    usermod -aG dwarfs Haumea && \
-    usermod -aG dwarfs Eris && \
-    usermod -aG terrestrials Mars && \
-    usermod -aG terrestrials Earth && \
-    usermod -aG terrestrials Venus && \
-    usermod -aG terrestrials Mercury && \
-    usermod -aG hypotheticals PlanetX
+    usermod -g sudo Pluto && \
+    usermod -g sudo Makemake && \
+    usermod -g gasgiants Neptune && \
+    usermod -g gasgiants Uranus && \
+    usermod -g gasgiants Saturn && \
+    usermod -g gasgiants Jupiter && \
+    usermod -g icegiants Neptune && \
+    usermod -g icegiants Uranus && \
+    usermod -g dwarfs Pluto && \
+    usermod -g dwarfs Ceres && \
+    usermod -g dwarfs Makemake && \
+    usermod -g dwarfs Haumea && \
+    usermod -g dwarfs Eris && \
+    usermod -g terrestrials Mars && \
+    usermod -g terrestrials Earth && \
+    usermod -g terrestrials Venus && \
+    usermod -g terrestrials Mercury && \
+    usermod -g hypotheticals PlanetX
 
 # Allow pluto to use sudo without password
 RUN echo "Pluto ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
