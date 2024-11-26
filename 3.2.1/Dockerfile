@@ -27,8 +27,7 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-    RUN groupadd -f Pluto && \
-    groupadd -f gasgiants && \
+RUN groupadd -f gasgiants && \
     groupadd -f dwarfs && \
     groupadd -f icegiants && \
     groupadd -f terrestrials && \
