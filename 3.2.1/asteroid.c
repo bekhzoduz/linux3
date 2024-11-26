@@ -16,12 +16,12 @@ int main() {
         return 1;
     }
 
-    if (strcmp(pw->pw_name, "Pluto") == 0) {
+    if (strcmp(pw->pw_name, "Ceres") == 0) {
         printf("Yaxshi, siz flagni ko'rishingiz mumkin:\n");
         // Print the flag
         printf("Flag: HD{Koinot_juda_ham_kattaaaaa!}\n");
     } else {
-        printf("Kirish rad etildi. Siz user 'Pluto' bo'lishi kerak.\n");
+        printf("Kirish rad etildi. Siz user 'Ceres' bo'lishi kerak.\n");
         return 1;
     }
 
