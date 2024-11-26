@@ -27,20 +27,55 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-    RUN groupadd -f Pluton && groupadd -f gasgiants && groupadd -f dwarfs && \
-    useradd -m -d /home/Pluton -s /bin/bash -g Pluton Pluton && \
-    echo "Pluton:solarsystem" | chpasswd && \
+    RUN groupadd -f Pluto && groupadd -f gasgiants && groupadd -f dwarfs && groupadd -f icegiants && groupadd -f terrestrials && groupadd -f hypotheticals && \
+    useradd -m -d /home/Pluto -s /bin/bash -g Pluto Pluto && \
+    useradd -m -d /home/Ceres -s /bin/bash -g Ceres Ceres && \
+    useradd -m -d /home/Neptune -s /bin/bash -g Neptune Neptune && \
+    useradd -m -d /home/Uranus -s /bin/bash -g Uranus Uranus && \
+    useradd -m -d /home/Saturn -s /bin/bash -g Saturn Saturn && \
+    useradd -m -d /home/Jupiter -s /bin/bash -g Jupiter Jupiter && \
+    useradd -m -d /home/Haumea -s /bin/bash -g Haumea Haumea && \
+    useradd -m -d /home/Mercury -s /bin/bash -g Mercury Mercury && \
+    useradd -m -d /home/Eris -s /bin/bash -g Eris Eris && \
+    useradd -m -d /home/Mars -s /bin/bash -g Mars Mars && \
+    useradd -m -d /home/Earth -s /bin/bash -g Earth Earth && \
+    useradd -m -d /home/Venus -s /bin/bash -g Venus Venus && \
+    useradd -m -d /home/PlanetX -s /bin/bash -g PlanetX PlanetX && \
+    echo "Pluto:solarsystem" | chpasswd && \
+    echo "Neptune:solarsystem" | chpasswd && \
+    echo "Uranus:solarsystem" | chpasswd && \
+    echo "Saturn:solarsystem" | chpasswd && \
+    echo "Jupiter:solarsystem" | chpasswd && \
+    echo "Haumea:solarsystem" | chpasswd && \
+    echo "Mercury:solarsystem" | chpasswd && \
+    echo "Eris:solarsystem" | chpasswd && \
+    echo "Mars:solarsystem" | chpasswd && \
+    echo "Earth:solarsystem" | chpasswd && \
+    echo "Venus:solarsystem" | chpasswd && \
+    echo "PlanetX:solarsystem" | chpasswd && \
     mkdir -p /var/ss && \
     useradd -m -d /home/Makemake -s /bin/bash Makemake && \
     echo "Makemake:Makemake" | chpasswd && \
     useradd -m -d /home/Admin -s /bin/bash Admin && \
     echo "Admin:Admin" | chpasswd && \
-    usermod -aG gasgiants Pluton && \
-    usermod -aG sudo Pluton && \
+    usermod -aG sudo Pluto && \
     usermod -aG sudo Makemake && \
-    useradd -m jupiter && \
-    useradd -m dwarf1 -g dwarfs && \
-    useradd -m dwarf2 -g dwarfs
+    usermod -aG gasgiants Neptune && \
+    usermod -aG gasgiants Uranus && \
+    usermod -aG gasgiants Saturn && \
+    usermod -aG gasgiants Jupiter && \
+    usermod -aG icegiants Neptune && \
+    usermod -aG icegiants Uranus && \
+    usermod -aG dwarfs Pluto && \
+    usermod -aG dwarfs Ceres && \
+    usermod -aG dwarfs Makemake && \
+    usermod -aG dwarfs Haumea && \
+    usermod -aG dwarfs Eris && \
+    usermod -aG terrestrials Mars && \
+    usermod -aG terrestrials Earth && \
+    usermod -aG terrestrials Venus && \
+    usermod -aG terrestrials Mercury && \
+    usermod -aG hypotheticals PlanetX
 
 # Allow pluto to use sudo without password
 RUN echo "Pluton ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -77,8 +112,9 @@ RUN gcc -o /var/ss/asteroid /var/ss/asteroid.c && \
 RUN echo "" > /var/ss/pulsar && \
     chown Pluton:Pluton /var/ss/pulsar && \
     chmod 600 /var/ss/pulsar && \
-    chown Pluton:Pluton /var/ss/* && \
-    chmod 755 /var/ss/asteroid /var/ss/meteor /var/ss/comet /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check
+    chown Ceres:Ceres /var/ss/* && \
+    chmod 700 /var/ss/asteroid && \
+    chmod 755 /var/ss/meteor /var/ss/comet /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check
 
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity
 RUN touch /var/ss/eventhorizon /var/ss/singularity && \
