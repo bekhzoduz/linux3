@@ -114,7 +114,7 @@ RUN gcc -o /var/ss/asteroid /var/ss/asteroid.c && \
 
 # Create and set permissions for /var/ss/pulsar and other files
 RUN echo "" > /var/ss/pulsar && \
-    chown Pluton:Pluton /var/ss/pulsar && \
+    chown Pluto:Pluto /var/ss/pulsar && \
     chmod 600 /var/ss/pulsar && \
     chown Ceres:Ceres /var/ss/* && \
     chmod 700 /var/ss/asteroid && \
@@ -122,7 +122,7 @@ RUN echo "" > /var/ss/pulsar && \
 
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity
 RUN touch /var/ss/eventhorizon /var/ss/singularity && \
-    chown Pluton:Pluton /var/ss/eventhorizon /var/ss/singularity && \
+    chown Pluto:Pluto /var/ss/eventhorizon /var/ss/singularity && \
     chmod 640 /var/ss/singularity && \
     chmod 640 /var/ss/eventhorizon
 
