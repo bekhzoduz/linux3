@@ -33,7 +33,7 @@ RUN groupadd -f gasgiants && \
     groupadd -f terrestrials && \
     groupadd -f hypotheticals && \
     useradd -m -d /home/Pluto -s /bin/bash Pluto && \
-    useradd -m -d /home/Ceres -s /bin/bash -g Ceres Ceres && \
+    useradd -m -d /home/Ceres -s /bin/bash Ceres && \
     useradd -m -d /home/Neptune -s /bin/bash Neptune && \
     useradd -m -d /home/Uranus -s /bin/bash Uranus && \
     useradd -m -d /home/Saturn -s /bin/bash Saturn && \
