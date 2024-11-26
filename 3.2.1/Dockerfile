@@ -78,7 +78,7 @@ RUN apt-get update && apt-get install -y \
     usermod -aG hypotheticals PlanetX
 
 # Allow pluto to use sudo without password
-RUN echo "Pluton ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN echo "Pluto ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Copy the C source files into the container
 COPY asteroid.c /var/ss/
