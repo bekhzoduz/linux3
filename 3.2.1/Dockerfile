@@ -57,6 +57,7 @@ RUN groupadd -f gasgiants && \
     echo "Earth:solarsystem" | chpasswd && \
     echo "Venus:solarsystem" | chpasswd && \
     echo "PlanetX:solarsystem" | chpasswd && \
+    echo "Ceres:solarsystem" | chpasswd && \
     mkdir -p /var/ss && \
     useradd -m -d /home/Makemake -s /bin/bash Makemake && \
     echo "Makemake:Makemake" | chpasswd && \
