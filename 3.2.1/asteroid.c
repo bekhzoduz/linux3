@@ -18,11 +18,11 @@ int main() {
 
     // Check if the user is "pluto"
     if (strcmp(pw->pw_name, "Pluton") == 0) {
-        printf("User is Pluton. Displaying the flag...\n");
+        printf("Yaxshi, siz flagni ko'rishingiz mumkin:\n");
         // Print the flag
         printf("Flag: HD{Koinot_juda_ham_kattaaaaa!}\n");
     } else {
-        printf("Access denied. You must be user 'Pluton' to see the flag.\n");
+        printf("Kirish rad etildi. Siz user 'Pluton' bo'lishi kerak.\n");
         return 1;
     }
 
