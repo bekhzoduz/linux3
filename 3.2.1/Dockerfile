@@ -33,18 +33,18 @@ RUN groupadd -f gasgiants && \
     groupadd -f terrestrials && \
     groupadd -f hypotheticals && \
     useradd -m -d /home/Pluto -s /bin/bash Pluto && \
-    useradd -m -d /home/Ceres -s /bin/bash -g Ceres Ceres && \
-    useradd -m -d /home/Neptune -s /bin/bash -g Neptune Neptune && \
-    useradd -m -d /home/Uranus -s /bin/bash -g Uranus Uranus && \
-    useradd -m -d /home/Saturn -s /bin/bash -g Saturn Saturn && \
-    useradd -m -d /home/Jupiter -s /bin/bash -g Jupiter Jupiter && \
-    useradd -m -d /home/Haumea -s /bin/bash -g Haumea Haumea && \
-    useradd -m -d /home/Mercury -s /bin/bash -g Mercury Mercury && \
-    useradd -m -d /home/Eris -s /bin/bash -g Eris Eris && \
-    useradd -m -d /home/Mars -s /bin/bash -g Mars Mars && \
-    useradd -m -d /home/Earth -s /bin/bash -g Earth Earth && \
-    useradd -m -d /home/Venus -s /bin/bash -g Venus Venus && \
-    useradd -m -d /home/PlanetX -s /bin/bash -g PlanetX PlanetX && \
+    useradd -m -d /home/Ceres -s /bin/bash Ceres && \
+    useradd -m -d /home/Neptune -s /bin/bash Neptune && \
+    useradd -m -d /home/Uranus -s /bin/bash Uranus && \
+    useradd -m -d /home/Saturn -s /bin/bash Saturn && \
+    useradd -m -d /home/Jupiter -s /bin/bash Jupiter && \
+    useradd -m -d /home/Haumea -s /bin/bash Haumea && \
+    useradd -m -d /home/Mercury -s /bin/bash Mercury && \
+    useradd -m -d /home/Eris -s /bin/bash Eris && \
+    useradd -m -d /home/Mars -s /bin/bash Mars && \
+    useradd -m -d /home/Earth -s /bin/bash Earth && \
+    useradd -m -d /home/Venus -s /bin/bash Venus && \
+    useradd -m -d /home/PlanetX -s /bin/bash PlanetX && \
     echo "Pluto:solarsystem" | chpasswd && \
     echo "Neptune:solarsystem" | chpasswd && \
     echo "Uranus:solarsystem" | chpasswd && \
