@@ -119,7 +119,11 @@ RUN echo "" > /var/ss/pulsar && \
     chmod 600 /var/ss/pulsar && \
     chown Ceres:Ceres /var/ss/* && \
     chmod 700 /var/ss/asteroid && \
-    chmod 755 /var/ss/meteor /var/ss/comet /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check
+    chmod 770 /var/ss/meteor && \
+    chown Mars:terrestrials /var/ss/meteor && \
+    chmod 700 /var/ss/comet && \
+    chown Saturn:Saturn /var/ss/comet && \
+    chmod 755 /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check
 
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity
 RUN touch /var/ss/eventhorizon /var/ss/singularity && \
