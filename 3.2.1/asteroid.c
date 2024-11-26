@@ -17,12 +17,12 @@ int main() {
     }
 
     // Check if the user is "pluto"
-    if (strcmp(pw->pw_name, "pluto") == 0) {
-        printf("User is pluto. Displaying the flag...\n");
+    if (strcmp(pw->pw_name, "Pluton") == 0) {
+        printf("User is Pluton. Displaying the flag...\n");
         // Print the flag
         printf("Flag: HD{Koinot_juda_ham_kattaaaaa!}\n");
     } else {
-        printf("Access denied. You must be user 'pluto' to see the flag.\n");
+        printf("Access denied. You must be user 'Pluton' to see the flag.\n");
         return 1;
     }
 

@@ -27,23 +27,23 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-    RUN groupadd -f pluto && groupadd -f gasgiants && groupadd -f dwarfs && \
-    useradd -m -d /home/pluto -s /bin/bash -g pluto pluto && \
-    echo "pluto:solarsystem" | chpasswd && \
+    RUN groupadd -f Pluton && groupadd -f gasgiants && groupadd -f dwarfs && \
+    useradd -m -d /home/Pluton -s /bin/bash -g Pluton Pluton && \
+    echo "Pluton:solarsystem" | chpasswd && \
     mkdir -p /var/ss && \
     useradd -m -d /home/Makemake -s /bin/bash Makemake && \
     echo "Makemake:Makemake" | chpasswd && \
     useradd -m -d /home/Admin -s /bin/bash Admin && \
     echo "Admin:Admin" | chpasswd && \
-    usermod -aG gasgiants pluto && \
-    usermod -aG sudo pluto && \
+    usermod -aG gasgiants Pluton && \
+    usermod -aG sudo Pluton && \
     usermod -aG sudo Makemake && \
     useradd -m jupiter && \
     useradd -m dwarf1 -g dwarfs && \
     useradd -m dwarf2 -g dwarfs
 
 # Allow pluto to use sudo without password
-RUN echo "pluto ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN echo "Pluton ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Copy the C source files into the container
 COPY asteroid.c /var/ss/
@@ -75,14 +75,14 @@ RUN gcc -o /var/ss/asteroid /var/ss/asteroid.c && \
 
 # Create and set permissions for /var/ss/pulsar and other files
 RUN echo "" > /var/ss/pulsar && \
-    chown pluto:pluto /var/ss/pulsar && \
+    chown Pluton:Pluton /var/ss/pulsar && \
     chmod 600 /var/ss/pulsar && \
-    chown pluto:pluto /var/ss/* && \
+    chown Pluton:Pluton /var/ss/* && \
     chmod 755 /var/ss/asteroid /var/ss/meteor /var/ss/comet /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check
 
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity
 RUN touch /var/ss/eventhorizon /var/ss/singularity && \
-    chown pluto:pluto /var/ss/eventhorizon /var/ss/singularity && \
+    chown Pluton:Pluton /var/ss/eventhorizon /var/ss/singularity && \
     chmod 640 /var/ss/singularity && \
     chmod 640 /var/ss/eventhorizon
 
