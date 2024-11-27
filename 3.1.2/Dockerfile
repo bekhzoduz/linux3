@@ -46,11 +46,10 @@ RUN usermod -aG sudo bill
 RUN usermod -aG sudo cathy
 RUN usermod -aG sudo senji
 
-USER jane
-# "jane" uchun muhit o'zgaruvchisini qo'shish
-RUN export JANEFLAG="HD{Taqlid_qilish_bu_super!}" && \
-    chown jane:jane /home/jane/.bashrc && \
-    chmod 644 /home/jane/.bashrc
+# Jane foydalanuvchisi uchun JANEFLAG o'zgaruvchisini o'rnatish
+RUN echo 'export JANEFLAG="HD{Taqlid_qilish_bu_super!}"' >> /home/jane/.bashrc && \
+    chown jane:jane /home/jane/.bashrc
+
 
 
 # Standart foydalanuvchi sifatida 'cathy'ni o'rnatish
