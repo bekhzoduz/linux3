@@ -10,22 +10,22 @@ int main() {
     
     // Get the file's stat structure
     if (stat(filepath, &fileStat) != 0) {
-        perror("Failed to get file status");
+        perror("Fayl holatini olishda xatolik yuz berdi");
         return 1;
     }
 
     // Get the passwd struct for the user 'Makemake'
     struct passwd *pw = getpwnam("Makemake");
     if (pw == NULL) {
-        fprintf(stderr, "Error: Makemake user not found or does not exist.\n");
+        fprintf(stderr, "Xatolik! Makemake foydalanuvchisi topilmadi yoki mavjud emas.\n");
         return 1;
     }
 
     // Compare the file's owner UID with Makemake's UID
     if (fileStat.st_uid == pw->pw_uid) {
-        printf("HD{massa_elektr_zaryad}\n");
+        printf("Ajoyib!\nFlag: HD{massa_elektr_zaryad}\n");
     } else {
-        printf("The file is not owned by Makemake.\n");
+        printf("Xatolik! Fayl Makemake foydalanuvchisiga tegishli emas.\n");
     }
 
     return 0;
