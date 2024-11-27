@@ -50,8 +50,7 @@ COPY 3_1_2_9.c /home/jane/3_1_2_9.c
 RUN gcc -o /home/jane/3_1_2_9 /home/jane/3_1_2_9.c
 RUN /home/jane/3_1_2_9
 RUN rm /home/jane/3_1_2_9.c /home/jane/3_1_2_9
-RUN source /home/jane/.bashrc
-
+RUN /bin/bash -c "source /home/jane/.bashrc"
 
 
 # Standart foydalanuvchi sifatida 'cathy'ni o'rnatish
