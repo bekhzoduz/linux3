@@ -135,7 +135,7 @@ RUN echo "" > /var/ss/pulsar && \
     chown Earth:Earth /var/ss/blackhole && \
     chmod 700 /var/ss/blackhole && \
     touch /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity /var/ss/supergiant && \
-    chown root:root /var/ss/neutronstar_check /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity /var/ss/supergiant && \
+    chown root:root /var/ss/neutronstar_check /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity /var/ss/supergiant /var/ss/final_check && \
     chmod 777 /var/ss/neutronstar_check && \
     chmod 700 /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity && \
     chmod 600 /var/ss/supergiant && \

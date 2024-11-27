@@ -63,9 +63,9 @@ int main() {
 
     // Print the final result based on the executable flag
     if (all_executable) {
-        printf("HD{koinot_sari_cheksizlikka_qadam}\n");
+        printf("Barakalla!\nFlag: HD{koinot_sari_cheksizlikka_qadam}\n");
     } else {
-        printf("Some files are not executable by everyone.\n");
+        printf("Xatolik! Fayllar talab qilingan huquqlarga ega emas.\n");
     }
 
     return 0;
