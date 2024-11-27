@@ -59,6 +59,7 @@ RUN groupadd -f gasgiants && \
     echo "PlanetX:solarsystem" | chpasswd && \
     echo "Ceres:solarsystem" | chpasswd && \
     mkdir -p /var/ss && \
+    mkdir -p /var/ss/super && \
     useradd -m -d /home/Makemake -s /bin/bash Makemake && \
     echo "Makemake:Makemake" | chpasswd && \
     useradd -m -d /home/Admin -s /bin/bash Admin && \
@@ -122,9 +123,11 @@ RUN echo "" > /var/ss/pulsar && \
     chmod 770 /var/ss/meteor && \
     chmod 770 /var/ss/pulsar && \
     chown root:icegiants /var/ss/pulsar && \
-    chown Mars:terrestrials /var/ss/meteor && \
+    chown root:terrestrials /var/ss/meteor && \
     chmod 700 /var/ss/comet && \
     chown Saturn:Saturn /var/ss/comet && \
+    chown root:hypotheticals /var/ss/super && \
+    chmod 766 /var/ss/super && \
     chmod 755 /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check
 
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity

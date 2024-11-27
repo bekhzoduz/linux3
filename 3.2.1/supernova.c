@@ -11,7 +11,7 @@ int main() {
     // Open the directory
     DIR *dir = opendir(directory_path);
     if (dir == NULL) {
-        perror("Failed to open directory");
+        perror("Fayl yopilganda xatolik");
         return 1;
     }
 
@@ -20,14 +20,14 @@ int main() {
     while ((entry = readdir(dir)) != NULL) {
         // Check if the file name starts with "nova"
         if (strncmp(entry->d_name, file_prefix, strlen(file_prefix)) == 0) {
-            printf("File '%s' found! Flag: HD{koinot_rostdan_ham_mavjudmi}\n", entry->d_name);
+            printf("'%s' topildi! Flag: HD{koinot_rostdan_ham_mavjudmi}\n", entry->d_name);
             file_found = 1;
             break; // Stop searching after the first match
         }
     }
 
     if (!file_found) {
-        printf("No file starting with 'nova' found in %s\n", directory_path);
+        printf("'%s' fayli topilmadi\n", directory_path);
     }
 
     // Close the directory
