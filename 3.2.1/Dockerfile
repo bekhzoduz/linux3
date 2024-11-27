@@ -27,6 +27,9 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN echo "root:SagittariusA" | chpasswd
+
+# Create groups
 RUN groupadd -f gasgiants && \
     groupadd -f dwarfs && \
     groupadd -f icegiants && \
