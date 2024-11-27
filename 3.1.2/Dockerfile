@@ -45,11 +45,9 @@ RUN id -nG john | grep -qw "sudo" && deluser john sudo || echo "john is not in s
 RUN usermod -aG sudo bill
 RUN usermod -aG sudo cathy
 RUN usermod -aG sudo senji
-COPY 3_1_2_9.c /home/jane/3_1_2_9.c
-RUN gcc -o /home/jane/3_1_2_9 /home/jane/3_1_2_9.c
-RUN /home/jane/3_1_2_9
-RUN rm /home/jane/3_1_2_9.c /home/jane/3_1_2_9
-RUN /bin/bash -c "source /home/jane/.bashrc"
+RUN adduser jane && echo "jane:jane" | chpasswd
+USER jane
+RUN echo 'export JANEFLAG="HD{Taqlid_qilish_bu_super!}"' >> /home/jane/.bashrc
 
 
 # Standart foydalanuvchi sifatida 'cathy'ni o'rnatish
