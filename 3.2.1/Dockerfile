@@ -127,7 +127,7 @@ RUN echo "" > /var/ss/pulsar && \
     chmod 700 /var/ss/comet && \
     chown Saturn:Saturn /var/ss/comet && \
     chown root:hypotheticals /var/ss/super && \
-    chmod 766 /var/ss/super && \
+    chmod 775 /var/ss/super && \
     chmod 755 /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check
 
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity
