@@ -30,10 +30,7 @@ RUN mkdir -p /home/barbarian3 && \
     mkdir -p /root && \
     echo "root:hack123" | chpasswd && \
     useradd -m -d /home/Admin -s /bin/bash Admin && \
-    echo "Admin:Admin" | chpasswd && \
-    useradd -m -d /home/alie -s /bin/bash alie && \
-    echo "alie:alie" | chpasswd && \
-    usermod -L alie
+    echo "Admin:Admin" | chpasswd
 
 COPY ./ /home/barbarian3/
 
