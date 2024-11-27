@@ -20,7 +20,7 @@ int main() {
     while ((entry = readdir(dir)) != NULL) {
         // Check if the file name starts with "nova"
         if (strncmp(entry->d_name, file_prefix, strlen(file_prefix)) == 0) {
-            printf("'%s' topildi! Flag: HD{koinot_rostdan_ham_mavjudmi}\n", entry->d_name);
+            printf("Juda yaxshi %s fayli topildi!\nFlag: HD{koinot_rostdan_ham_mavjudmi}\n", entry->d_name);
             file_found = 1;
             break; // Stop searching after the first match
         }
