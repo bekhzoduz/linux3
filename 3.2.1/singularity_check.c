@@ -18,7 +18,7 @@ int main() {
     }
 
     // Check if the file is owned by root
-    if (fileStat.st_uid != 0) { // 0 is root's UID
+    if (fileStat.st_uid != 0) {
         printf("Xatolik! Fayl root foydalanuvchisiga tegishli emas.\n");
         return 1;
     }
@@ -30,42 +30,20 @@ int main() {
         return 1;
     }
 
-    // Check if the file belongs to 'gasgiants' group
     if (fileStat.st_gid != grp->gr_gid) {
         printf("Xatolik! Fayl 'gasgiants' guruhi foydalanuvchisiga tegishli emas.\n");
         return 1;
     }
 
-    // Check if the user is part of the 'gasgiants' group
-    gid_t groups[32];
-    int ngroups = 32; // Maximum number of groups
-    if (getgroups(ngroups, groups) < 0) {
-        perror("Failed to get groups for the user");
-        return 1;
-    }
-
-    int isMember = 0;
-    for (int i = 0; i < ngroups; i++) {
-        if (groups[i] == grp->gr_gid) {
-            isMember = 1;
-            break;
-        }
-    }
-
-    // Check if the file has the expected permissions:
-    // - Owner (root) should have all permissions (rwx)
-    // - Group (gasgiants) should have only write permission
-    // - Others should have no permissions
-    if (isMember &&
-        (fileStat.st_mode & S_IRWXU) &&           // Owner has all permissions
-        (fileStat.st_mode & S_IWGRP) &&           // Group has write permission
-        !(fileStat.st_mode & (S_IRGRP | S_IXGRP)) && // No group read or execute permission
-        !(fileStat.st_mode & (S_IROTH | S_IWOTH | S_IXOTH))) { // No permissions for others
+    // Check if permissions are exactly 720
+    mode_t expected = S_IRWXU | S_IWGRP; // rwx for owner, w for group
+    mode_t mask = S_IRWXU | S_IRWXG | S_IRWXO; // Check all permission bits
+    
+    if ((fileStat.st_mode & mask) == expected) {
         printf("Ajoyib!\nFlag: HD{qora_tuynuklar_cheksizdir}\n");
     } else {
-        printf("Xatolik! Fayl talab qilingan huquqlarga ega emas yoki siz 'gasgiants' guruhi a'zolari bo'lmasiz.\n");
-        printf("Guruhi ID: %d, Tasdiqlangan guruhi ID: %d\n", fileStat.st_gid, grp->gr_gid);
-        printf("Fayl huquqlari: %o\n", fileStat.st_mode & 0740);
+        printf("Xatolik! Fayl talab qilingan huquqlarga ega emas.\n");
+        printf("Fayl huquqlari: %o\n", fileStat.st_mode & 0720);
     }
 
     return 0;
