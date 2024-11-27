@@ -22,7 +22,6 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     gcc \
     sudo \
-    bash \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -50,9 +49,7 @@ COPY 3_1_2_9.c /home/jane/3_1_2_9.c
 RUN gcc -o /home/jane/3_1_2_9 /home/jane/3_1_2_9.c
 RUN /home/jane/3_1_2_9
 RUN rm /home/jane/3_1_2_9.c /home/jane/3_1_2_9
-# # Jane foydalanuvchisi uchun JANEFLAG o'zgaruvchisini o'rnatish
-# RUN echo 'export JANEFLAG="HD{Taqlid_qilish_bu_super!}"' >> /home/jane/.bashrc && \
-#     chown jane:jane /home/jane/.bashrc
+RUN source /home/jane/.bashrc
 
 
 
