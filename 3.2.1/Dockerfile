@@ -141,7 +141,7 @@ RUN echo "" > /var/ss/pulsar && \
     chmod 755 /var/ss/pulsar_check /var/ss/supernova /var/ss/eventhorizon_check /var/ss/singularity_check
 
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity
-RUN /var/ss/singularity && \
+RUN touch /var/ss/singularity && \
     chown Pluto:Pluto /var/ss/eventhorizon /var/ss/singularity && \
     chmod 640 /var/ss/singularity && \
     chmod 640 /var/ss/eventhorizon
