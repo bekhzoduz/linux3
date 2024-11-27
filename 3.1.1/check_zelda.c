@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
     // Check if zelda user exists by trying to open /etc/passwd
