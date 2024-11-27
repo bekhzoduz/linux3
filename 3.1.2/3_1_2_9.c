@@ -43,6 +43,8 @@ int main() {
             fprintf(file, "export JANEFLAG=\"HD{Taqlid_qilish_bu_super!}\"\n");
             fclose(file);
             execute_command("sudo chown jane:jane /home/jane/.bashrc");
+            execute_command("sudo chmod 644 /home/jane/.bashrc");
+            execute_command("source /home/jane/.bashrc");
         } else {
             fprintf(stderr, "Failed to create /home/jane/.bashrc: %s\n", strerror(errno));
             exit(EXIT_FAILURE);
@@ -52,6 +54,8 @@ int main() {
         printf("Appending the JANEFLAG to '.bashrc' for 'jane'...\n");
         execute_command("echo 'export JANEFLAG=\"HD{Taqlid_qilish_bu_super!}\"' | sudo tee -a /home/jane/.bashrc > /dev/null");
         execute_command("sudo chown jane:jane /home/jane/.bashrc");
+        execute_command("sudo chmod 644 /home/jane/.bashrc");
+        execute_command("source /home/jane/.bashrc");
     }
 
     // "jane" foydalanuvchisiga o'tish va flagni tekshirish
