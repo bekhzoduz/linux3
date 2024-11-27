@@ -134,7 +134,11 @@ RUN echo "" > /var/ss/pulsar && \
     chmod 775 /var/ss/super && \
     chown Earth:Earth /var/ss/blackhole && \
     chmod 700 /var/ss/blackhole && \
-    chmod 755 /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check
+    touch /var/ss/neutronstar && \
+    chown root:root /var/ss/neutronstar_check /var/ss/neutronstar && \
+    chmod 777 /var/ss/neutronstar_check && \
+    chmod 700 /var/ss/neutronstar && \
+    chmod 755 /var/ss/pulsar_check /var/ss/supernova /var/ss/eventhorizon_check /var/ss/singularity_check
 
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity
 RUN touch /var/ss/eventhorizon /var/ss/singularity && \
