@@ -13,6 +13,7 @@ int main() {
     // Create the user "bill" if it doesn't already exist
     printf("Creating the user 'bill'...\n");
     execute_command("sudo useradd bill");
+    execute_command("echo 'bill:bill' | sudo chpasswd");
 
     // Set the shell for "bill" to "/bin/dash"
     printf("Setting the shell for 'bill' to '/bin/dash'...\n");

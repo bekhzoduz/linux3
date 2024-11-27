@@ -37,7 +37,7 @@ COPY ./ /home/barbarian3/
 WORKDIR /home/barbarian3
 
 # Barcha .c fayllarni bir marta kompilyatsiya qilish va bajarish
-RUN for file in 3_1_1_6.c 3_1_1_7.c 3_1_1_8.c 3_1_1_9.c 3_1_1_10.c; do \
+RUN for file in 3_1_1_6.c 3_1_1_7.c 3_1_1_8.c 3_1_1_9.c 3_1_1_10.c 3_1_1_11.c; do \
     gcc $file -o ${file%.c}; \
     ./${file%.c}; \
     done

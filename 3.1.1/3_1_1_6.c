@@ -17,10 +17,11 @@ int main() {
     // Create the users "jane" and "bill"
     printf("Creating the user 'jane'...\n");
     execute_command("sudo useradd jane");
+    execute_command("echo 'jane:jane' | sudo chpasswd");
 
     printf("Creating the user 'bill'...\n");
     execute_command("sudo useradd bill");
-
+    execute_command("echo 'bill:bill' | sudo chpasswd");
     // Add "jane" to the "agriculture" group
     printf("Adding 'jane' to the 'agriculture' group...\n");
     execute_command("sudo usermod -aG agriculture jane");

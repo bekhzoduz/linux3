@@ -16,8 +16,8 @@ int main() {
 
     // Disable the user account by locking it
     printf("Disabling the user 'alie'...\n");
+    execute_command("echo 'alie:alie' | sudo chpasswd");
     execute_command("sudo passwd -l alie");
-
     // Verify if the user is disabled
     printf("Verifying if the user 'alie' is disabled:\n");
     execute_command("sudo passwd -S alie");
