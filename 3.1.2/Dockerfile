@@ -22,7 +22,6 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     gcc \
     sudo \
-    source \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
