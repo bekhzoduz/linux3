@@ -11,7 +11,7 @@ void check_permissions(const char *path) {
 
     // Get the file status
     if (stat(path, &fileStat) < 0) {
-        perror("Failed to get file status");
+        perror("Fayl statusini olishda xatolik");
         return;
     }
 
@@ -19,7 +19,7 @@ void check_permissions(const char *path) {
     if (!((fileStat.st_mode & S_IXUSR) && // Owner has execute permission
           (fileStat.st_mode & S_IXGRP) && // Group has execute permission
           (fileStat.st_mode & S_IXOTH))) { // Others have execute permission
-        printf("File %s is not executable by everyone.\n", path);
+        // printf("File %s is not executable by everyone.\n", path);
         all_executable = 0;  // Set flag to 0 if any file is not executable
     }
 }
@@ -29,7 +29,7 @@ void traverse_directory(const char *dir) {
     struct dirent *entry;
 
     if (!(d = opendir(dir))) {
-        perror("Failed to open directory");
+        perror("Fayl yopilganda xatolik");
         return;
     }
 
