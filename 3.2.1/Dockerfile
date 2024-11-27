@@ -143,8 +143,7 @@ RUN echo "" > /var/ss/pulsar && \
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity
 RUN touch /var/ss/singularity && \
     chown Pluto:Pluto /var/ss/singularity && \
-    chmod 640 /var/ss/singularity && \
-    chmod 640 /var/ss/eventhorizon
+    chmod 640 /var/ss/singularity
 
 # Set the Pluto user to run the container
 USER Admin
