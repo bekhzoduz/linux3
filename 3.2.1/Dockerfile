@@ -135,10 +135,11 @@ RUN echo "" > /var/ss/pulsar && \
     chown Earth:Earth /var/ss/blackhole && \
     chmod 700 /var/ss/blackhole && \
     touch /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity && \
-    chown root:root /var/ss/neutronstar_check /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity && \
+    chown root:root /var/ss/neutronstar_check /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity /var/ss/supergiant && \
     chmod 777 /var/ss/neutronstar_check && \
     chmod 700 /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity && \
-    chmod 777 /var/ss/pulsar_check /var/ss/supernova /var/ss/eventhorizon_check /var/ss/singularity_check
+    chmod 600 /var/ss/supergiant && \
+    chmod 777 /var/ss/pulsar_check /var/ss/supernova /var/ss/eventhorizon_check /var/ss/singularity_check /var/ss/supergiant_check
 
 
 # Set the Pluto user to run the container
