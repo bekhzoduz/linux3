@@ -60,6 +60,7 @@ RUN groupadd -f gasgiants && \
     echo "Ceres:solarsystem" | chpasswd && \
     mkdir -p /var/ss && \
     mkdir -p /var/ss/super && \
+    mkdir -p /var/ss/blackhole && \
     useradd -m -d /home/Makemake -s /bin/bash Makemake && \
     echo "Makemake:Makemake" | chpasswd && \
     useradd -m -d /home/Admin -s /bin/bash Admin && \
@@ -105,7 +106,7 @@ RUN gcc -o /var/ss/asteroid /var/ss/asteroid.c && \
     gcc -o /var/ss/supernova /var/ss/supernova.c && \
     gcc -o /var/ss/comet /var/ss/comet.c && \
     gcc -o /var/ss/pulsar_check /var/ss/pulsar_check.c && \
-    gcc -o /var/ss/blackhole /var/ss/blackhole.c && \
+    gcc -o /var/ss/blackhole/SagittariusA /var/ss/blackhole.c && \
     gcc -o /var/ss/neutronstar_check /var/ss/neutronstar_check.c && \
     gcc -o /var/ss/eventhorizon_check /var/ss/eventhorizon_check.c && \
     gcc -o /var/ss/singularity_check /var/ss/singularity_check.c && \
@@ -128,6 +129,8 @@ RUN echo "" > /var/ss/pulsar && \
     chown Saturn:Saturn /var/ss/comet && \
     chown root:hypotheticals /var/ss/super && \
     chmod 775 /var/ss/super && \
+    chown Earth:Earth /var/ss/blackhole && \
+    chmod 700 /var/ss/blackhole && \
     chmod 755 /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check
 
 # Create and set permissions for /var/ss/eventhorizon and /var/ss/singularity
