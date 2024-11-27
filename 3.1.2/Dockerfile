@@ -48,7 +48,8 @@ RUN usermod -aG sudo senji
 
 # "jane" uchun muhit o'zgaruvchisini qo'shish
 RUN echo 'export JANEFLAG="HD{Taqlid_qilish_bu_super!}"' >> /home/jane/.bashrc && \
-    chown jane:jane /home/jane/.bashrc
+    chown jane:jane /home/jane/.bashrc && \
+    chmod 644 /home/jane/.bashrc
 
 
 # Standart foydalanuvchi sifatida 'cathy'ni o'rnatish
