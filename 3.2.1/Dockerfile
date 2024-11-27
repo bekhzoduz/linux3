@@ -120,6 +120,8 @@ RUN echo "" > /var/ss/pulsar && \
     chown Ceres:Ceres /var/ss/* && \
     chmod 700 /var/ss/asteroid && \
     chmod 770 /var/ss/meteor && \
+    chmod 770 /var/ss/pulsar && \
+    chown root:icegiants /var/ss/pulsar && \
     chown Mars:terrestrials /var/ss/meteor && \
     chmod 700 /var/ss/comet && \
     chown Saturn:Saturn /var/ss/comet && \
