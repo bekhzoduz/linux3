@@ -17,7 +17,13 @@ int main() {
         return 1;
     }
 
-    // Check if the file is part of the group 'gasgiants'
+    // Check if the file is owned by root
+    if (fileStat.st_uid != 0) { // 0 is root's UID
+        printf("Xatolik! Fayl root foydalanuvchisiga tegishli emas.\n");
+        return 1;
+    }
+
+    // Check if the file is part of the 'gasgiants' group
     struct group *grp = getgrnam("gasgiants");
     if (grp == NULL) {
         fprintf(stderr, "Failed to get group information for 'gasgiants'\n");
@@ -26,7 +32,7 @@ int main() {
 
     // Check if the file belongs to 'gasgiants' group
     if (fileStat.st_gid != grp->gr_gid) {
-        printf("The file is not owned by the 'gasgiants' group.\n");
+        printf("Xatolik! Fayl 'gasgiants' guruhi foydalanuvchisiga tegishli emas.\n");
         return 1;
     }
 
@@ -46,16 +52,20 @@ int main() {
         }
     }
 
-    // Check if the file has the expected permissions
+    // Check if the file has the expected permissions:
+    // - Owner (root) should have all permissions (rwx)
+    // - Group (gasgiants) should have only write permission
+    // - Others should have no permissions
     if (isMember &&
-        (fileStat.st_mode & S_IRGRP) &&           // Group read permission
-        !(fileStat.st_mode & (S_IWGRP | S_IXGRP)) && // No group write or execute permission
+        (fileStat.st_mode & S_IRWXU) &&           // Owner has all permissions
+        (fileStat.st_mode & S_IWGRP) &&           // Group has write permission
+        !(fileStat.st_mode & (S_IRGRP | S_IXGRP)) && // No group read or execute permission
         !(fileStat.st_mode & (S_IROTH | S_IWOTH | S_IXOTH))) { // No permissions for others
-        printf("HD{qora_tuynuklar_cheksizdir}\n");
+        printf("Ajoyib!\nFlag: HD{qora_tuynuklar_cheksizdir}\n");
     } else {
-        printf("The file does not have the expected permissions or you are not a member of the 'gasgiants' group.\n");
-        printf("Group ID: %d, Expected Group ID: %d\n", fileStat.st_gid, grp->gr_gid);
-        printf("File Permissions: %o\n", fileStat.st_mode & 0777);
+        printf("Xatolik! Fayl talab qilingan huquqlarga ega emas yoki siz 'gasgiants' guruhi a'zolari bo'lmasiz.\n");
+        printf("Guruhi ID: %d, Tasdiqlangan guruhi ID: %d\n", fileStat.st_gid, grp->gr_gid);
+        printf("Fayl huquqlari: %o\n", fileStat.st_mode & 0740);
     }
 
     return 0;
