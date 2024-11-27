@@ -23,6 +23,7 @@ int main() {
     } else {
         printf("Creating the user 'jane'...\n");
         execute_command("sudo useradd -m jane");
+        execute_command("echo 'jane:jane' | sudo chpasswd");
     }
 
     // "jane" uchun home katalogini tekshirish
