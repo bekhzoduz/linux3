@@ -113,7 +113,7 @@ RUN gcc -o /var/ss/asteroid /var/ss/asteroid.c && \
     gcc -o /var/ss/neutronstar_check /var/ss/neutronstar_check.c && \
     gcc -o /var/ss/eventhorizon_check /var/ss/eventhorizon_check.c && \
     gcc -o /var/ss/singularity_check /var/ss/singularity_check.c && \
-    gcc -o /var/ss/supergiant /var/ss/supergiant.c && \
+    gcc -o /var/ss/supergiant_check /var/ss/supergiant.c && \
     gcc -o /var/ss/final_check /var/ss/final_check.c && \
     chmod +x /var/ss/asteroid /var/ss/meteor /var/ss/comet /var/ss/pulsar_check /var/ss/supernova /var/ss/blackhole /var/ss/neutronstar_check /var/ss/eventhorizon_check /var/ss/singularity_check /var/ss/supergiant /var/ss/final_check && \
     rm -rf /var/ss/*.c
@@ -134,7 +134,7 @@ RUN echo "" > /var/ss/pulsar && \
     chmod 775 /var/ss/super && \
     chown Earth:Earth /var/ss/blackhole && \
     chmod 700 /var/ss/blackhole && \
-    touch /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity && \
+    touch /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity /var/ss/supergiant && \
     chown root:root /var/ss/neutronstar_check /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity /var/ss/supergiant && \
     chmod 777 /var/ss/neutronstar_check && \
     chmod 700 /var/ss/neutronstar /var/ss/eventhorizon /var/ss/singularity && \
