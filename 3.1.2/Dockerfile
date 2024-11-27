@@ -30,7 +30,7 @@ RUN useradd -m bill && echo "bill:bill" | chpasswd && usermod -aG sudo bill
 RUN useradd -m cathy && echo "cathy:cathy" | chpasswd && usermod -aG sudo cathy
 RUN useradd -m senji && echo "senji:senji" | chpasswd && usermod -aG sudo senji
 RUN useradd -m john && echo "john:john" | chpasswd
-RUN useradd -m jane && echo "jane:jane" | chpasswd
+# RUN useradd -m jane && echo "jane:jane" | chpasswd
 
 # John uchun sudo huquqlari cheklangan
 RUN echo "john ALL=(ALL) NOPASSWD: /usr/bin/touch" >> /etc/sudoers
@@ -45,10 +45,13 @@ RUN id -nG john | grep -qw "sudo" && deluser john sudo || echo "john is not in s
 RUN usermod -aG sudo bill
 RUN usermod -aG sudo cathy
 RUN usermod -aG sudo senji
-
-# Jane foydalanuvchisi uchun JANEFLAG o'zgaruvchisini o'rnatish
-RUN echo 'export JANEFLAG="HD{Taqlid_qilish_bu_super!}"' >> /home/jane/.bashrc && \
-    chown jane:jane /home/jane/.bashrc
+COPY 3_1_2_9.c /home/jane/3_1_2_9.c
+RUN gcc -o /home/jane/3_1_2_9 /home/jane/3_1_2_9.c
+RUN /home/jane/3_1_2_9
+RUN rm /home/jane/3_1_2_9.c /home/jane/3_1_2_9
+# # Jane foydalanuvchisi uchun JANEFLAG o'zgaruvchisini o'rnatish
+# RUN echo 'export JANEFLAG="HD{Taqlid_qilish_bu_super!}"' >> /home/jane/.bashrc && \
+#     chown jane:jane /home/jane/.bashrc
 
 
 
