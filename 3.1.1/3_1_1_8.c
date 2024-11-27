@@ -17,7 +17,7 @@ int main() {
     // Create the user "stan"
     printf("Creating the user 'stan'...\n");
     execute_command("sudo useradd stan");
-
+    execute_command("echo 'stan:stan' | sudo chpasswd");
     // Add "stan" to the "industry" group
     printf("Adding 'stan' to the 'industry' group...\n");
     execute_command("sudo usermod -aG industry stan");

@@ -16,7 +16,7 @@ int main() {
 
     // Set a password for the user (you can change "password" to your desired password)
     printf("Setting a password for 'zelda'...\n");
-    execute_command("echo 'zelda:password' | sudo chpasswd");
+    execute_command("echo 'zelda:zelda' | sudo chpasswd");
 
     // Run the check_zelda binary located in root's home directory
     printf("Running the check_zelda binary...\n");
