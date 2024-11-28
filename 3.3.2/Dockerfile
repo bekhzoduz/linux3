@@ -70,12 +70,12 @@ RUN gcc -m64 /home/phoenix/rising_process.c -o /usr/bin/rising_process && rm -f 
 
 # Add background processes to run on login
 RUN echo "# Start system processes" >> /etc/bash.bashrc && \
-    echo "/usr/bin/remember &" >> /etc/bash.bashrc && \
     echo "/usr/bin/system_monitor &" >> /etc/bash.bashrc && \
     echo "/usr/bin/network_service &" >> /etc/bash.bashrc && \
     echo "/usr/bin/backup_daemon &" >> /etc/bash.bashrc && \
     echo "/usr/bin/cache_cleaner &" >> /etc/bash.bashrc && \
     echo "/usr/bin/log_rotator &" >> /etc/bash.bashrc && \
+    echo "/usr/bin/remember &" >> /etc/bash.bashrc && \
     echo "/usr/bin/red-hat &" >> /etc/bash.bashrc && \
     echo "/usr/bin/Haady &" >> /etc/bash.bashrc && \
     echo "/usr/bin/Cybernation &" >> /etc/bash.bashrc && \
