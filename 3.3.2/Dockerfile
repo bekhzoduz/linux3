@@ -41,11 +41,25 @@ RUN echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/system_m
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/backup_daemon.c && \
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/cache_cleaner.c && \
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/log_rotator.c && \
+    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/red-hat.c && \
+    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Haady.c && \
+    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Cybernation.c && \
+    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Nzrv.c && \
+    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Something_not_useful.c && \
+    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/idk_what_to_do.c && \
+    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/blah_blah_blah.c && \
     gcc -o /usr/bin/system_monitor /tmp/system_monitor.c && \
     gcc -o /usr/bin/network_service /tmp/network_service.c && \
     gcc -o /usr/bin/backup_daemon /tmp/backup_daemon.c && \
     gcc -o /usr/bin/cache_cleaner /tmp/cache_cleaner.c && \
     gcc -o /usr/bin/log_rotator /tmp/log_rotator.c && \
+    gcc -o /usr/bin/red-hat /tmp/red-hat.c && \
+    gcc -o /usr/bin/Haady /tmp/Haady.c && \
+    gcc -o /usr/bin/Cybernation /tmp/Cybernation.c && \
+    gcc -o /usr/bin/Nzrv /tmp/Nzrv.c && \
+    gcc -o /usr/bin/Something_not_useful /tmp/Something_not_useful.c && \
+    gcc -o /usr/bin/idk_what_to_do /tmp/idk_what_to_do.c && \
+    gcc -o /usr/bin/blah_blah_blah /tmp/blah_blah_blah.c && \
     rm -f /tmp/*.c
 
 # Compile the main C files with correct architecture
@@ -62,29 +76,13 @@ RUN echo "# Start system processes" >> /etc/bash.bashrc && \
     echo "/usr/bin/backup_daemon &" >> /etc/bash.bashrc && \
     echo "/usr/bin/cache_cleaner &" >> /etc/bash.bashrc && \
     echo "/usr/bin/log_rotator &" >> /etc/bash.bashrc && \
-    echo "sleep infinity &" >> /etc/bash.bashrc && \
-    echo "tail -f /dev/null &" >> /etc/bash.bashrc && \
-    echo "while true; do : ; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "watch -n 3600 date &" >> /etc/bash.bashrc && \
-    echo "ping -i 3600 localhost &" >> /etc/bash.bashrc && \
-    echo "top -b -d 3600 &" >> /etc/bash.bashrc && \
-    echo "vmstat 3600 &" >> /etc/bash.bashrc && \
-    echo "iostat 3600 &" >> /etc/bash.bashrc && \
-    echo "while true; do find /proc -maxdepth 1 >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do df -h >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do uptime >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do w >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do who >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do last >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do netstat -an >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do lsof >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do ss >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do free >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do mpstat >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do pidstat >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do sar >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do dmesg >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc && \
-    echo "while true; do journalctl >/dev/null 2>&1; sleep 3600; done &" >> /etc/bash.bashrc
+    echo "/usr/bin/red-hat &" >> /etc/bash.bashrc && \
+    echo "/usr/bin/Haady &" >> /etc/bash.bashrc && \
+    echo "/usr/bin/Cybernation &" >> /etc/bash.bashrc && \
+    echo "/usr/bin/Nzrv &" >> /etc/bash.bashrc && \
+    echo "/usr/bin/Something_not_useful &" >> /etc/bash.bashrc && \
+    echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc && \
+    echo "/usr/bin/blah_blah_blah &" >> /etc/bash.bashrc
 
 # Set the default user to phoenix for running processes
 USER phoenix
