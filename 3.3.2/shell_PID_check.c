@@ -11,7 +11,7 @@ int main() {
     
     // Compare the entered PID with the parent process PID
     if (input_pid == getppid()) {
-        printf("OS{more_like_phoenix_identifier_bird?}\n");
+        printf("HD{feniks_qushiga_o'xshashroqmi?}\n");
     } else {
         printf("PID Notog'ri!!\n");
     }
