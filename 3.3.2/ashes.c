@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <sys/types.h>
+#include <time.h>
 
 // Signal handler to ignore interrupts
 void signal_handler(int signum) {
