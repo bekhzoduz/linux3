@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 #define ALLOC_SIZE 500 * 1024 * 1024 // 500 MB
 
