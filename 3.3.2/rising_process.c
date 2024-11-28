@@ -12,7 +12,7 @@ void print_menu() {
 }
 
 void display_flag() {
-    printf("HD{Linux ko'nikmalaringiz katta darajada oshmoqda!}\n");
+    printf("HD{Sizning_Linux_Bilish_Darajangiz_Katta_Tezlikda_Osayapti!}\n");
 }
 
 int main() {
@@ -30,11 +30,11 @@ int main() {
                 printf("Exiting...\n");
                 exit(0);
             case 3:
-                printf("Backgrounding process...\n");
+                printf("Processni backgroundga o'tkazish...\n");
                 kill(getpid(), SIGSTOP); // Stop the process
                 break;
             default:
-                printf("Invalid option. Try again.\n");
+                printf("Xato tanlov! Iltimos, qayta urinib ko'ring.\n");
         }
     }
 

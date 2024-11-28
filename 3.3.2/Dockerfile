@@ -66,7 +66,7 @@ RUN echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/system_m
 RUN gcc -m64 /home/phoenix/shell_PID_check.c -o /home/phoenix/shell_PID_check && rm -f /home/phoenix/shell_PID_check.c
 RUN gcc -m64 /home/phoenix/ashes.c -o /home/phoenix/ashes && rm -f /home/phoenix/ashes.c
 RUN gcc -m64 /home/phoenix/remember.c -o /usr/bin/remember && rm -f /home/phoenix/remember.c
-RUN gcc -m64 /home/phoenix/rising_process.c -o /usr/bin/rising_process && rm -f /home/phoenix/rising_process.c
+RUN gcc -m64 /home/phoenix/rising_process.c -o /usr/bin/rising && rm -f /home/phoenix/rising_process.c
 
 # Add background processes to run on login
 RUN echo "# Start system processes" >> /etc/bash.bashrc && \
@@ -82,7 +82,9 @@ RUN echo "# Start system processes" >> /etc/bash.bashrc && \
     echo "/usr/bin/Nzrv &" >> /etc/bash.bashrc && \
     echo "/usr/bin/Something_not_useful &" >> /etc/bash.bashrc && \
     echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc && \
-    echo "/usr/bin/blah_blah_blah &" >> /etc/bash.bashrc
+    echo "/usr/bin/blah_blah_blah &" >> /etc/bash.bashrc && \
+    echo "/usr/bin/rising & kill -STOP $!" >> /etc/bash.bashrc
+
 
 # Set the default user to phoenix for running processes
 USER phoenix
