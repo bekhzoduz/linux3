@@ -10,7 +10,7 @@
 void generate_instructions() {
     FILE *file = fopen("instructions.txt", "w");
     if (file != NULL) {
-        fprintf(file, "HD{Endi_men_yana_bir_bor_qayta_tug'ildim}");
+        fprintf(file, "HD{Endi_men_yana_bir_bor_qayta_tug'ildim}\n");
         fclose(file);
     } else {
         perror("Could not create instructions.txt");
