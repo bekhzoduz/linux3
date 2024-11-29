@@ -1,4 +1,4 @@
 #!/bin/bash
+set -m
 /usr/bin/rising &
-sleep 1
 kill -SIGSTOP $!
