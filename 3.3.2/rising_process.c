@@ -32,7 +32,22 @@ int main() {
     // Initially in the background, the process does nothing (silent mode)
     printf("Process started in background... Waiting for SIGCONT to begin logic.\n");
 
-    // The program will wait for the SIGCONT signal to move to the foreground
+    // Fork the process to send it to the background
+    pid_t pid = fork();
+    
+    if (pid < 0) {
+        // Error in forking
+        perror("Fork failed");
+        exit(1);
+    }
+
+    if (pid > 0) {
+        // Parent process (initial process), just exit immediately
+        printf("Parent exiting, background process running...\n");
+        exit(0);
+    }
+
+    // Child process (this will be the background process)
     while (1) {
         if (is_foreground) {
             // Once moved to the foreground, show the menu and perform the main logic
@@ -49,12 +64,12 @@ int main() {
                         printf("Exiting...\n");
                         exit(0);
                     case 3:
-                        printf("Processni backgroundga o'tkazish...\n");
+                        printf("Sending process to background...\n");
                         // Stop the process (pause execution until resumed)
                         kill(getpid(), SIGSTOP); // Stop the process, like sending it to background
                         break;
                     default:
-                        printf("Xato tanlov! Iltimos, qayta urinib ko'ring.\n");
+                        printf("Invalid choice! Please try again.\n");
                 }
             }
         }
