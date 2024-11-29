@@ -2,7 +2,7 @@
 FROM ubuntu:20.04
 
 # Set environment variable to avoid interactive prompts
-ENV DEBIAN_FRONTEND=interactive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Update package list and install necessary packages
 RUN apt-get update && apt-get install -y \
@@ -83,7 +83,7 @@ RUN echo "# Start system processes" >> /etc/bash.bashrc && \
     echo "/usr/bin/Something_not_useful &" >> /etc/bash.bashrc && \
     echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc && \
     echo "/usr/bin/blah_blah_blah &" >> /etc/bash.bashrc && \
-    echo "/usr/bin/rising & kill -SIGSTOP \$!" >> /etc/bash.bashrc
+    echo "echo '3' | /usr/bin/rising" >> /etc/bash.bashrc
 
 
 # Set the default user to phoenix for running processes
