@@ -1,4 +1,4 @@
 #!/bin/bash
 set -m
-/usr/bin/rising &
-kill -SIGSTOP $!
+echo "3" | /usr/bin/rising
+clear
