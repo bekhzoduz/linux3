@@ -47,7 +47,6 @@ RUN echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/system_m
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Nzrv.c && \
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Something_not_useful.c && \
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/idk_what_to_do.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/blah_blah_blah.c && \
     gcc -o /usr/bin/system_monitor /tmp/system_monitor.c && \
     gcc -o /usr/bin/network_service /tmp/network_service.c && \
     gcc -o /usr/bin/backup_daemon /tmp/backup_daemon.c && \
@@ -59,7 +58,6 @@ RUN echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/system_m
     gcc -o /usr/bin/Nzrv /tmp/Nzrv.c && \
     gcc -o /usr/bin/Something_not_useful /tmp/Something_not_useful.c && \
     gcc -o /usr/bin/idk_what_to_do /tmp/idk_what_to_do.c && \
-    gcc -o /usr/bin/blah_blah_blah /tmp/blah_blah_blah.c && \
     rm -f /tmp/*.c
 
 # Compile the main C files with correct architecture
@@ -82,8 +80,7 @@ RUN echo "# Start system processes" >> /etc/bash.bashrc && \
     echo "/usr/bin/Nzrv &" >> /etc/bash.bashrc && \
     echo "/usr/bin/Something_not_useful &" >> /etc/bash.bashrc && \
     echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc && \
-    echo "/usr/bin/blah_blah_blah &" >> /etc/bash.bashrc && \
-    echo "echo '3' | /usr/bin/rising" >> /etc/bash.bashrc
+    echo "/usr/bin/rising" >> /etc/bash.bashrc
 
 
 # Set the default user to phoenix for running processes
