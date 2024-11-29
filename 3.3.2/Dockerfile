@@ -34,6 +34,8 @@ COPY ./shell_PID_check.c /home/phoenix/shell_PID_check.c
 COPY ./remember.c /home/phoenix/remember.c
 COPY ./rising_process.c /home/phoenix/rising_process.c
 COPY ./ashes.c /home/phoenix/ashes.c
+COPY ./start-rising.sh /tmp/start-rising.sh
+RUN chmod +x /tmp/start-rising.sh
 
 # Create additional small C programs
 RUN echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/system_monitor.c && \
@@ -80,7 +82,7 @@ RUN echo "# Start system processes" >> /etc/bash.bashrc && \
     echo "/usr/bin/Nzrv &" >> /etc/bash.bashrc && \
     echo "/usr/bin/Something_not_useful &" >> /etc/bash.bashrc && \
     echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc && \
-    echo "/usr/bin/rising" >> /etc/bash.bashrc
+    echo "/tmp/start-rising.sh" >> /etc/bash.bashrc
 
 
 # Set the default user to phoenix for running processes
