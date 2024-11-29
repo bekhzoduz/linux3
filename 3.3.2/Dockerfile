@@ -83,7 +83,7 @@ RUN echo "# Start system processes" >> /etc/bash.bashrc && \
     echo "/usr/bin/Something_not_useful &" >> /etc/bash.bashrc && \
     echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc && \
     echo "/usr/bin/blah_blah_blah &" >> /etc/bash.bashrc && \
-    echo "/usr/bin/rising && kill -STOP \$!" >> /etc/bash.bashrc
+    echo "/usr/bin/rising & kill -STOP \$!" >> /etc/bash.bashrc
 
 
 # Set the default user to phoenix for running processes
