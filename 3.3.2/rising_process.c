@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <sys/types.h>
+#include <string.h>
 
 void print_menu() {
     printf("1. Print flag\n");
@@ -15,13 +16,19 @@ void display_flag() {
     printf("HD{Sizning_Linux_Bilish_Darajangiz_Katta_Tezlikda_Osayapti!}\n");
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     int choice;
 
-    while (1) {
+    // Check if choice was passed as parameter
+    if (argc > 1) {
+        choice = atoi(argv[1]);
+    } else {
+        // Get choice from user input
         print_menu();
         scanf("%d", &choice);
+    }
 
+    while (1) {
         switch (choice) {
             case 1:
                 display_flag();
@@ -33,9 +40,13 @@ int main() {
                 printf("Processni backgroundga o'tkazish...\n");
                 kill(getpid(), SIGSTOP); // Stop the process
                 break;
-            default:
+                default:
                 printf("Xato tanlov! Iltimos, qayta urinib ko'ring.\n");
         }
+
+        // Get next choice from user
+        print_menu();
+        scanf("%d", &choice);
     }
 
     return 0;
