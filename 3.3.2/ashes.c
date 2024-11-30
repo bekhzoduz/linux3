@@ -5,15 +5,16 @@
 #include <sys/types.h>
 #include <time.h>
 
-// Signal handler to ignore interrupts
+// Signal handler to ignore interrupts and handle specific signals
 void signal_handler(int signum) {
-    // Allow SIGSTOP for background operation, ignore others
-    if (signum == SIGTSTP) {
-        kill(getpid(), SIGSTOP);
+    // Ignore SIGINT (Ctrl+C), SIGQUIT, and SIGHUP (Terminal hangup)
+    if (signum == SIGINT || signum == SIGQUIT || signum == SIGHUP) {
+        // Simply ignore these signals, do nothing
+        return;
     }
-    // Check if process is being continued from background (SIGCONT)
+
+    // If the process is continued from background (SIGCONT)
     if (signum == SIGCONT) {
-        // Check if ashes.txt exists
         char ashes_txt_path[] = "/home/phoenix/ashes.txt";
         if (access(ashes_txt_path, F_OK) != 0) {
             // File doesn't exist, print flag
@@ -22,7 +23,7 @@ void signal_handler(int signum) {
     }
 }
 
-// Function to generate instruction file
+// Function to generate the instructions file
 void generate_instructions() {
     FILE *file = fopen("/home/phoenix/ashes.txt", "w");
     if (file != NULL) {
@@ -37,15 +38,15 @@ int main() {
     // Set up signal handlers for common termination signals
     signal(SIGINT, signal_handler);  // Ctrl+C
     signal(SIGTERM, signal_handler); // kill
-    signal(SIGQUIT, signal_handler); // Ctrl+
+    signal(SIGQUIT, signal_handler); // Ctrl+\
     signal(SIGHUP, signal_handler);  // Terminal hangup
     signal(SIGTSTP, signal_handler); // Ctrl+Z
 
-    while(1) {
-        // Generate random numbers for captcha
+    while (1) {
+        // Generate random numbers for CAPTCHA
         srand(time(NULL));
-        int num1 = rand() % 100;
-        int num2 = rand() % 100;
+        int num1 = rand() % 30;
+        int num2 = rand() % 30;
         printf("Boshlashdan oldin, siz robot emasligingizni isbotlang...\nQuyidagi amalning javobi nechchi? %d + %d\nJavobingiz:", num1, num2);
 
         int user_answer;
@@ -53,12 +54,13 @@ int main() {
 
         if (user_answer == num1 + num2) {
             generate_instructions();
-            printf("Yangi fayl yaratildi: /home/phoenix/ashes.txt\nSizning yurishingiz...");
-            break;
-        }else{
+            printf("Yangi fayl yaratildi: /home/phoenix/ashes.txt\nSizning yurishingiz...\n");
+            break; // Break out of the loop if CAPTCHA is solved
+        } else {
             printf("Xato javob, qaytadan urinib ko'ring...\n");
-            return 0;
+            // Restart the loop instead of exiting
         }
     }
+
     return 0;
 }
