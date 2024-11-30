@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Start /usr/bin/rising and simulate pressing "3" to send it to the background
 /usr/bin/rising &
 
