@@ -17,7 +17,7 @@ void display_flag() {
 }
 
 int main(int argc, char *argv[]) {
-    int choice = 0s;
+    int choice = 0;
 
     // Check if choice was passed as parameter
     if (argc > 1) {
