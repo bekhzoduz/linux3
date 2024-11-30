@@ -22,7 +22,7 @@ void signal_handler(int signum) {
         if (access(ashes_txt_path, F_OK) != 0) {
             // File doesn't exist, print flag
             printf("HD{Endi_men_yana_bir_bor_qayta_tug'ildim}\n");
-            printf("\nHahaha! You have no idea what you have done... \nYou can not stop me...\n");
+            printf("Hahaha! Nima qilib qo'yganingni hayolingga ham keltirolmaysan...\nSen meni to'xtatolmaysan...\n");
         }
     }
 }
@@ -31,7 +31,7 @@ void signal_handler(int signum) {
 void generate_instructions() {
     FILE *file = fopen("/home/phoenix/ashes.txt", "w");
     if (file != NULL) {
-        fprintf(file, "Men mavjud bo'lganimcha davom eta olmayman, lekin davom etsangiz, men mavjud bo'la olmayman.\nMeni o'chiring....\n");
+        fprintf(file, "Men mavjud bo'lsam, davom eta olmayman, lekin davom etsam, mavjud bo'la olmayman\nMeni o'chiring....\n");
         fclose(file);
     } else {
         perror("ashes.txt yaratishda xatolik\n");
@@ -75,8 +75,8 @@ int main() {
             char ashes_txt_path[] = "/home/phoenix/ashes.txt";
             if (access(ashes_txt_path, F_OK) != 0) {
                 // File doesn't exist, print flag
-                printf("HD{Siz_ozingizni_hukmdor_bulganingizni_his_qilasiz}\n");
-                printf("Hahaha! You have no idea what you have done... \nYou can not stop me...\n");
+                printf("HD{Endi_men_yana_bir_bor_qayta_tug'ildim}\n");
+                printf("Hahaha! Nima qilib qo'yganingni hayolingga ham keltirolmaysan...\nSen meni to'xtatolmaysan...\n");
                 // Flag printed, set done to 1
                 done = 1;
             }

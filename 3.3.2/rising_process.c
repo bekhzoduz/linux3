@@ -87,7 +87,11 @@ int main() {
     int done = 1;
     while (done) {
         print_menu();
-        scanf("%d", &choice);
+        if (scanf("%d", &choice) != 1) {
+            printf("Iltimos, faqat raqam kiriting!\n");
+            while (getchar() != '\n'); // Clear input buffer
+            continue;
+        }
 
         // Tanlovni tekshirish
         switch (choice) {
