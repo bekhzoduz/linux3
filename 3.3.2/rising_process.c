@@ -22,9 +22,8 @@ int main() {
     // Dastur terminalga bog'langanligini tekshirish
     if (!isatty(fileno(stdin))) {
         // Agar dastur background rejimida bo'lsa, hech narsa qilmasin
-        while (1) {
-            sleep(1);
-        }
+        kill(getpid(), SIGSTOP);
+        exit(0);
     }
 
     int choice = 0;
