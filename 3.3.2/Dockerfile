@@ -70,11 +70,7 @@ RUN echo "# Start system processes" >> /etc/bash.bashrc && \
     echo "/usr/bin/Cybernation &" >> /etc/bash.bashrc && \
     echo "/usr/bin/Nzrv &" >> /etc/bash.bashrc && \
     echo "/usr/bin/Something_not_useful &" >> /etc/bash.bashrc && \
-    echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc && \
-    echo "/usr/bin/rising &" >> /etc/bash.bashrc && \
-    # echo "/tmp/start-rising.sh" >> /etc/bash.bashrc && \
-    # echo "trap 'kill $(jobs -p)' EXIT" >> /etc/bash.bashrc && \
-    echo "export TERM=xterm" >> /etc/bash.bashrc
+    echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc
 
 # Set the default user to phoenix for running processes
 USER phoenix

@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <termios.h>
 #include <signal.h>
+#include <stdbool.h>
 
 // Menyuni chiqarish funktsiyasi
 void print_menu() {
@@ -26,33 +27,33 @@ int main() {
         exit(0);
     }
 
+    // Dastur boshlanganda, faqat "backgroundga o'ting" matnini chiqaramiz
+    printf("Meni backgroundga olib o'ting va ortga qaytaring...\n");
+
+    // Jarayonni backgroundga olib o'tish uchun signal kutish
+    pause();  // wait until the process is moved to the background with SIGSTOP or other signal
+
     int choice = 0;
 
     // Menyuni chiqarish va foydalanuvchidan tanlov so'rash
-    int done = 1;
-    while (done) {
+    while (1) {
         print_menu();
         scanf("%d", &choice);
 
         // Tanlovni tekshirish
-
         switch (choice) {
             case 1:
                 display_flag();
-                done = 0;
                 break;
             case 2:
                 printf("Chiqish...\n");
-                done = 0;
                 exit(0);
             case 3:
                 printf("Processni backgroundga o'tkazish...\n");
                 kill(getpid(), SIGSTOP); // Processni to'xtatish
-                done = 0;
                 break;
             default:
                 printf("Xato tanlov! Iltimos, qayta urinib ko'ring.\n");
-                done = 0;
                 break;
         }
     }
