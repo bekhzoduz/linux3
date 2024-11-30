@@ -38,7 +38,7 @@ int main() {
     // Set up signal handlers for common termination signals
     signal(SIGINT, signal_handler);  // Ctrl+C
     signal(SIGTERM, signal_handler); // kill
-    signal(SIGQUIT, signal_handler); // Ctrl+\
+    signal(SIGQUIT, signal_handler); // Ctrl+\/
     signal(SIGHUP, signal_handler);  // Terminal hangup
     signal(SIGTSTP, signal_handler); // Ctrl+Z
 
