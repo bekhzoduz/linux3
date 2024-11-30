@@ -82,5 +82,4 @@ USER phoenix
 # Set the working directory
 WORKDIR /home/phoenix
 
-# Start the rising_process in the background automatically when the container starts
-CMD ["bash", "-l"]
+CMD ["bash"]
