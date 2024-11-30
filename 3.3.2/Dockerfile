@@ -22,6 +22,8 @@ RUN apt-get update && apt-get install -y \
     tar \
     libc6 \
     lsb-release \
+    procps \
+    tmux \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -70,8 +72,6 @@ RUN echo "# Start system processes" >> /etc/bash.bashrc && \
     echo "/usr/bin/Something_not_useful &" >> /etc/bash.bashrc && \
     echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc && \
     echo "/usr/bin/rising &" >> /etc/bash.bashrc && \
-    echo "kill -STOP $!" >> /etc/bash.bashrc && \
-    echo "bg %13" >> /etc/bash.bashrc && \
     echo "trap 'kill $(jobs -p)' EXIT" >> /etc/bash.bashrc && \
     echo "export TERM=xterm" >> /etc/bash.bashrc
 
