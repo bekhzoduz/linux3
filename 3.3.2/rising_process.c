@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
                 printf("Processni backgroundga o'tkazish...\n");
                 kill(getpid(), SIGSTOP); // Stop the process
                 break;
-                default:
+            default:
                 printf("Xato tanlov! Iltimos, qayta urinib ko'ring.\n");
         }
 
