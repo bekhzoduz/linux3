@@ -36,8 +36,8 @@ COPY ./shell_PID_check.c /home/phoenix/shell_PID_check.c
 COPY ./remember.c /home/phoenix/remember.c
 COPY ./rising_process.c /home/phoenix/rising_process.c
 COPY ./ashes.c /home/phoenix/ashes.c
-COPY ./start-rising.sh /tmp/start-rising.sh
-RUN chmod +x /tmp/start-rising.sh
+COPY ./jobs.sh /tmp/jobs.sh
+RUN chmod +x /tmp/jobs.sh
 
 # Compile the main C files with correct architecture
 RUN gcc -m64 /home/phoenix/shell_PID_check.c -o /home/phoenix/shell_PID_check && rm -f /home/phoenix/shell_PID_check.c
@@ -55,7 +55,9 @@ RUN echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/system_m
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Cybernation.c && gcc -m64 /tmp/Cybernation.c -o /usr/bin/Cybernation && rm -f /tmp/Cybernation.c && \
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Nzrv.c && gcc -m64 /tmp/Nzrv.c -o /usr/bin/Nzrv && rm -f /tmp/Nzrv.c && \
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Something_not_useful.c && gcc -m64 /tmp/Something_not_useful.c -o /usr/bin/Something_not_useful && rm -f /tmp/Something_not_useful.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/idk_what_to_do.c && gcc -m64 /tmp/idk_what_to_do.c -o /usr/bin/idk_what_to_do && rm -f /tmp/idk_what_to_do.c
+    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/idk_what_to_do.c && gcc -m64 /tmp/idk_what_to_do.c -o /usr/bin/idk_what_to_do && rm -f /tmp/idk_what_to_do.c && \
+    echo "export ASHES_DONE=0" >> /etc/bash.bashrc && \
+    echo "alias jobs='/tmp/jobs.sh'" >> /etc/bash.bashrc
 
 # Add background processes to run on login
 RUN echo "# Start system processes" >> /etc/bash.bashrc && \
