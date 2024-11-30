@@ -22,9 +22,7 @@ void signal_handler(int signum) {
         if (access(ashes_txt_path, F_OK) != 0) {
             // File doesn't exist, print flag
             printf("HD{Endi_men_yana_bir_bor_qayta_tug'ildim}\n");
-            printf("\nHahaha! Nima qilib qo'yganingni hayolinga ham keltirolmaysan... \nSen meni to'xtatolmaysan...\n");
-        }else{
-            printf("Meni o'chiring...\n");
+            printf("\nHahaha! You have no idea what you have done... \nYou can not stop me...\n");
         }
     }
 }
@@ -69,10 +67,19 @@ int main() {
         }
     }
 
-    // Step 2: After creating the file, enter an infinite loop
+    // Step 2: Start the main execution after the file has been created
     while (1) {
-        // This loop will not be interrupted by Ctrl+C or other termination signals
-        sleep(1); // The program is running and doing nothing except ignoring signals
+        // Check if ashes.txt exists, if deleted, print the flag
+        char ashes_txt_path[] = "/home/phoenix/ashes.txt";
+        if (access(ashes_txt_path, F_OK) != 0) {
+            // File doesn't exist, print flag
+            printf("HD{Siz_ozingizni_hukmdor_bulganingizni_his_qilasiz}\n");
+            printf("Hahaha! You have no idea what you have done... \nYou can not stop me...\n");
+            break; // Flag printed, exit the loop
+        }
+        
+        // Sleep a bit to prevent high CPU usage while checking
+        sleep(1);
     }
 
     return 0;
