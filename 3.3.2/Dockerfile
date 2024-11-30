@@ -1,4 +1,4 @@
-# Use Ubuntu 20.04 as the base image
+# Use Ubuntu 20.04 as the base image 
 FROM ubuntu:20.04
 
 # Set environment variable to avoid interactive prompts
@@ -37,31 +37,6 @@ COPY ./ashes.c /home/phoenix/ashes.c
 COPY ./start-rising.sh /tmp/start-rising.sh
 RUN chmod +x /tmp/start-rising.sh
 
-# Create additional small C programs
-RUN echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/system_monitor.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/network_service.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/backup_daemon.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/cache_cleaner.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/log_rotator.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/red-hat.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Haady.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Cybernation.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Nzrv.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Something_not_useful.c && \
-    echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/idk_what_to_do.c && \
-    gcc -o /usr/bin/system_monitor /tmp/system_monitor.c && \
-    gcc -o /usr/bin/network_service /tmp/network_service.c && \
-    gcc -o /usr/bin/backup_daemon /tmp/backup_daemon.c && \
-    gcc -o /usr/bin/cache_cleaner /tmp/cache_cleaner.c && \
-    gcc -o /usr/bin/log_rotator /tmp/log_rotator.c && \
-    gcc -o /usr/bin/red-hat /tmp/red-hat.c && \
-    gcc -o /usr/bin/Haady /tmp/Haady.c && \
-    gcc -o /usr/bin/Cybernation /tmp/Cybernation.c && \
-    gcc -o /usr/bin/Nzrv /tmp/Nzrv.c && \
-    gcc -o /usr/bin/Something_not_useful /tmp/Something_not_useful.c && \
-    gcc -o /usr/bin/idk_what_to_do /tmp/idk_what_to_do.c && \
-    rm -f /tmp/*.c
-
 # Compile the main C files with correct architecture
 RUN gcc -m64 /home/phoenix/shell_PID_check.c -o /home/phoenix/shell_PID_check && rm -f /home/phoenix/shell_PID_check.c
 RUN gcc -m64 /home/phoenix/ashes.c -o /home/phoenix/ashes && rm -f /home/phoenix/ashes.c
@@ -82,12 +57,11 @@ RUN echo "# Start system processes" >> /etc/bash.bashrc && \
     echo "/usr/bin/Nzrv &" >> /etc/bash.bashrc && \
     echo "/usr/bin/Something_not_useful &" >> /etc/bash.bashrc && \
     echo "/usr/bin/idk_what_to_do &" >> /etc/bash.bashrc && \
-    # echo "/tmp/start-rising.sh" >> /etc/bash.bashrc
     echo "/usr/bin/rising &" >> /etc/bash.bashrc && \
     echo "kill -STOP $!" >> /etc/bash.bashrc && \
-    echo "bg %13" >> /etc/bash.bashrc
-
-
+    echo "bg %13" >> /etc/bash.bashrc && \
+    echo "trap 'kill $(jobs -p)' EXIT" >> /etc/bash.bashrc && \
+    echo "export TERM=xterm" >> /etc/bash.bashrc
 
 # Set the default user to phoenix for running processes
 USER phoenix
@@ -96,4 +70,4 @@ USER phoenix
 WORKDIR /home/phoenix
 
 # Start the rising_process in the background automatically when the container starts
-CMD ["bash"]
+CMD ["bash", "-l"]
