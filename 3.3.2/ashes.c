@@ -68,14 +68,18 @@ int main() {
     }
 
     // Step 2: Start the main execution after the file has been created
+    int done = 0;
     while (1) {
         // Check if ashes.txt exists, if deleted, print the flag
-        char ashes_txt_path[] = "/home/phoenix/ashes.txt";
-        if (access(ashes_txt_path, F_OK) != 0) {
-            // File doesn't exist, print flag
-            printf("HD{Siz_ozingizni_hukmdor_bulganingizni_his_qilasiz}\n");
-            printf("Hahaha! You have no idea what you have done... \nYou can not stop me...\n");
-            break; // Flag printed, exit the loop
+        if (!done) {
+            char ashes_txt_path[] = "/home/phoenix/ashes.txt";
+            if (access(ashes_txt_path, F_OK) != 0) {
+                // File doesn't exist, print flag
+                printf("HD{Siz_ozingizni_hukmdor_bulganingizni_his_qilasiz}\n");
+                printf("Hahaha! You have no idea what you have done... \nYou can not stop me...\n");
+                // Flag printed, set done to 1
+                done = 1;
+            }
         }
         
         // Sleep a bit to prevent high CPU usage while checking
