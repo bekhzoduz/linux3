@@ -19,6 +19,11 @@ void display_flag() {
     printf("HD{Sizning_Linux_Bilish_Darajangiz_Katta_Tezlikda_Osayapti!}\n");
 }
 
+// SIGCONT signaliga javob berish uchun signal handler
+void sigcont_handler(int sig) {
+    // Bu yerda faqat jarayonni davom ettirishni kutishimiz kerak
+}
+
 int main() {
     // Dastur terminalga bog'langanligini tekshirish
     if (!isatty(fileno(stdin))) {
@@ -26,6 +31,9 @@ int main() {
         kill(getpid(), SIGSTOP);
         exit(0);
     }
+
+    // SIGCONT signalini qabul qilish uchun signal handlerni sozlash
+    signal(SIGCONT, sigcont_handler);
 
     // Dastur boshlanganda, faqat "backgroundga o'ting" matnini chiqaramiz
     printf("Meni backgroundga olib o'ting va ortga qaytaring...\n");
