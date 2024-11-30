@@ -23,6 +23,8 @@ void signal_handler(int signum) {
             // File doesn't exist, print flag
             printf("HD{Endi_men_yana_bir_bor_qayta_tug'ildim}\n");
             printf("\nHahaha! Nima qilib qo'yganingni hayolinga ham keltirolmaysan... \nSen meni to'xtatolmaysan...\n");
+        }else{
+            printf("Meni o'chiring...\n");
         }
     }
 }
