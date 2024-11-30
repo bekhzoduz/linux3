@@ -5,6 +5,3 @@
 
 # Now, kill the process by sending a STOP signal to it (this will suspend it)
 kill -SIGSTOP $!
-
-# Clear the terminal screen
-clear
