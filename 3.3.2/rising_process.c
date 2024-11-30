@@ -17,7 +17,7 @@ void display_flag() {
 }
 
 int main(int argc, char *argv[]) {
-    int choice;
+    int choice = 0s;
 
     // Check if choice was passed as parameter
     if (argc > 1) {
@@ -29,6 +29,12 @@ int main(int argc, char *argv[]) {
     }
 
     while (1) {
+        // Check if choice is empty (0 or invalid)
+        while (choice <= 0) {
+            printf("Noto'g'ri tanlov! Iltimos, qaytadan kiriting.\n");
+            print_menu();
+            scanf("%d", &choice);
+        }
         switch (choice) {
             case 1:
                 display_flag();
@@ -43,10 +49,6 @@ int main(int argc, char *argv[]) {
             default:
                 printf("Xato tanlov! Iltimos, qayta urinib ko'ring.\n");
         }
-
-        // Get next choice from user
-        print_menu();
-        scanf("%d", &choice);
     }
 
     return 0;
