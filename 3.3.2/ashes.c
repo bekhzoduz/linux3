@@ -30,7 +30,7 @@ void generate_instructions() {
         fprintf(file, "Men mavjud bo'lganimcha davom eta olmayman, lekin davom etsangiz, men mavjud bo'la olmayman.\nMeni o'chiring....\n");
         fclose(file);
     } else {
-        perror("ashes.txt yaratishda xatolik");
+        perror("ashes.txt yaratishda xatolik\n");
     }
 }
 
@@ -40,14 +40,14 @@ int main() {
     signal(SIGTERM, signal_handler); // kill
     signal(SIGQUIT, signal_handler); // Ctrl+\/
     signal(SIGHUP, signal_handler);  // Terminal hangup
-    signal(SIGTSTP, signal_handler); // Ctrl+Z
+    signal(SIGTSTP, SIG_DFL);       // Let Ctrl+Z work normally by using default handler
 
     while (1) {
         // Generate random numbers for CAPTCHA
         srand(time(NULL));
-        int num1 = rand() % 30;
-        int num2 = rand() % 30;
-        printf("Boshlashdan oldin, siz robot emasligingizni isbotlang...\nQuyidagi amalning javobi nechchi? %d + %d\nJavobingiz:", num1, num2);
+        int num1 = rand() % 10;
+        int num2 = rand() % 10;
+        printf("Boshlashdan oldin, siz robot emasligingizni isbotlang...\nQuyidagi amalning javobi nechchi? %d + %d\nJavobingiz: ", num1, num2);
 
         int user_answer;
         scanf("%d", &user_answer);
