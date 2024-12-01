@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
 
 # Create a new user 'phoenix' with sudo privileges
 RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
-    echo "phoenix:phoenix" | chpasswd && \
+    echo "phoenix:rebirth" | chpasswd && \
     usermod -aG sudo phoenix && \
     mkdir -p /root && \
     echo "root:hack123" | chpasswd
