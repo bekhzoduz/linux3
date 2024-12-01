@@ -11,10 +11,10 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Add a binary (simulate /home/phoenix/watchman)
-COPY ./watchman.c /home/phoenix/watchman.c
+COPY ./watchman.c /home/phoenix/kuzatuvchi.c
 
 # Compile the binary
-RUN gcc /home/phoenix/watchman.c -o /home/phoenix/watchman && chmod +x /home/phoenix/watchman && rm /home/phoenix/watchman.c
+RUN gcc /home/phoenix/kuzatuvchi.c -o /home/phoenix/kuzatuvchi && chmod +x /home/phoenix/kuzatuvchi && rm /home/phoenix/kuzatuvchi.c
 
 # Set workdir and user
 WORKDIR /home/phoenix
