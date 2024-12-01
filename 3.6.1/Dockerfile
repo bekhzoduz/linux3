@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
 
 # Create user phoenix
 RUN useradd -m -s /bin/bash phoenix && \
-    echo "phoenix:Chronos" | chpasswd
+    echo "phoenix:phoenix" | chpasswd
 
 # Create root password (Greek word as per the requirement)
 RUN echo "root:Chronos" | chpasswd
@@ -38,9 +38,8 @@ RUN echo "root:Chronos" | chpasswd
 RUN mkdir -p /root/cron && mkdir -p /home/phoenix
 
 # Create a single crontab file containing both jobs
-RUN echo "*/1 * * * * echo 'HD{Cron_so''zi_\"Chronos\"dan_kelib_chiqadi,_bu_vaqt_degani}' > /root/flag_cron.txt" > /root/cronjobs && \
-    echo "* * * * * echo 'The Playing With Fire cronjob is dangerous!' > /var/bin/dangerous.txt" >> /root/cronjobs && \
-    crontab /root/cronjobs
+RUN echo "* * * * * echo 'HD{Cron_so‘zi_\"Chronos\"dan_kelib_chiqadi,_bu_vaqt_degani}'" > /home/phoenix/cronjobs && \
+    crontab /home/phoenix/cronjobs
 
 # Copy the check cron C programs (to be compiled)
 COPY check1.c /root/check1.c
