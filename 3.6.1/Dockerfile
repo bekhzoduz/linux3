@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     libc6 \
     vim \
     git \
-    utmpdump \
+    bsdutils \
     htop \
     net-tools \
     tar \
