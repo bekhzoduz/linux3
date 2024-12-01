@@ -38,12 +38,7 @@ RUN mkdir -p 01002-flag/DEBIAN && mkdir -p 01002-flag/usr/bin
 
 # Create the binary for 01002-flag
 RUN echo '#!/bin/bash' > 01002-flag/usr/bin/01002-flag \
-    && echo 'if [ -t 0 ]; then' >> 01002-flag/usr/bin/01002-flag \
-    && echo '  echo "Usage: find | 01002-flag"' >> 01002-flag/usr/bin/01002-flag \
-    && echo 'else' >> 01002-flag/usr/bin/01002-flag \
-    && echo '  cat > /dev/null' >> 01002-flag/usr/bin/01002-flag \
-    && echo '  echo "HD{Bu_juda_muvofiq_qilib_bajarildi!}"' >> 01002-flag/usr/bin/01002-flag \
-    && echo 'fi' >> 01002-flag/usr/bin/01002-flag \
+    && echo 'echo "HD{Bu_juda_muvofiq_qilib_bajarildi!}"' >> 01002-flag/usr/bin/01002-flag \
     && chmod +x 01002-flag/usr/bin/01002-flag
 
 
