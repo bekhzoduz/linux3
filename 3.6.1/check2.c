@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define CRON_FILE "/var/spool/cron/crontabs/root"
 #define CRON_JOB "The Playing With Fire cronjob is dangerous!"
