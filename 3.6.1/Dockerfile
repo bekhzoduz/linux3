@@ -56,5 +56,4 @@ USER phoenix
 
 WORKDIR /home/phoenix
 
-# Start the cron service and keep the container running
-CMD service cron start && bash
+CMD ["bash"]
