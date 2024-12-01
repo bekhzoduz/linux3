@@ -49,8 +49,8 @@ COPY check1.c /root/check1.c
 COPY check2.c /root/check2.c
 
 # Compile the C programs
-RUN gcc /root/check1.c -o /root/check1 && rm -f /root/check1.c
-RUN gcc /root/check2.c -o /root/check2  && rm -f /root/check2.c
+RUN gcc /root/check1.c -o /root/cron/check1 && rm -f /root/check1.c
+RUN gcc /root/check2.c -o /root/cron/check2  && rm -f /root/check2.c
 
 USER phoenix
 
