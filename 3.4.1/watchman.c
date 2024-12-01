@@ -24,23 +24,6 @@ void read_from_state(char *buffer, size_t size) {
     }
 }
 
-int is_watch_running() {
-    // Check if parent process name contains "watch"
-    char proc_path[256];
-    snprintf(proc_path, sizeof(proc_path), "/proc/%d/comm", getppid());
-    
-    FILE *f = fopen(proc_path, "r");
-    if (f) {
-        char parent_name[256];
-        if (fgets(parent_name, sizeof(parent_name), f)) {
-            fclose(f);
-            return strstr(parent_name, "watch") != NULL;
-        }
-        fclose(f);
-    }
-    return 0;
-}
-
 void show_flag_temporarily() {
     printf("\rMana! Men buni ko'rdim. Bir lahzalik yaltirash edi, lekin endi kelajak biroz... yorqinroq ko'rinmoqda.\n\nTik-tak! Sizning flagingiz:\nHD{Hech_qachon_yondashmang,_hatto_qiyomat_yuzida_ham}\n");
     fflush(stdout);
@@ -50,13 +33,7 @@ void show_flag_temporarily() {
 }
 
 int main() {
-    printf("Is watch running: %d\n", is_watch_running());
-    if (!is_watch_running()) {
-        printf("Hech narsa o'zgarmayapti. Dunyo avvalgidek, lekin kelajak har kuni biroz qorong'iroq ko'rinmoqda.\nIltimos! Ketmang. Kimdir buni amalga oshirishi kerak, tushunayapsizmi? Kimdir dunyoni qutqarishi kerak.\nIltimos, kuzatishda davom eting.\n");
-        return 0;
-    }
-
-    // Watch orqali ishga tushirilgan bo'lsa
+    // Dastur har doim ishlaydi, shuning uchun "watch"ni tekshirish shart emas
     char state[64];
     time_t current_time = time(NULL);
     read_from_state(state, sizeof(state));
@@ -67,7 +44,7 @@ int main() {
     }
 
     time_t last_time = atol(state + strlen("start_time="));
-    if (current_time - last_time >= 10) {
+    if (current_time - last_time >= 10) {  // 10 soniya kutish
         show_flag_temporarily();
         write_to_state("start_time", "0"); // Vaqtni yangilash
     } else {
