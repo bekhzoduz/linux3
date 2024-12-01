@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     wget \
     unzip \
+    nano \
     lsb-release \
     ca-certificates \
     gcc \
@@ -38,7 +39,9 @@ RUN echo "root:Chronos" | chpasswd
 RUN mkdir -p /root/cron && mkdir -p /home/phoenix
 
 # Add cron job for phoenix user
-RUN echo "* * * * * echo 'HD{Cron_so\'zi_\"Chronos\"dan_kelib_chiqadi,_bu_vaqt_degani}'" | crontab -u phoenix -
+RUN echo "* * * * * echo 'HD{Cron_so\'zi_\"Chronos\"dan_kelib_chiqadi,_bu_vaqt_degani}'" | crontab -u phoenix - && \
+    echo '#!/bin/bash\necho "The Playing With Fire cronjob is dangerous!"' > /etc/cron.monthly/PlayingWithFire && \
+    chmod +x /etc/cron.monthly/PlayingWithFire
 
 
 # Copy the check cron C programs (to be compiled)

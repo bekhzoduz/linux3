@@ -17,14 +17,14 @@ int main() {
     // Search for the specific cron job entry
     while (fgets(line, sizeof(line), fp) != NULL) {
         if (strstr(line, "37 13 * * 3")) {
-            printf("HD{Anacron_cronga_o‘xshaydi,_lekin_tizim_vaqti-vaqti_bilan_o‘chirilishini_faraz_qiladi}\n");
+            printf("Flag:\nHD{Anacron_cronga_o‘xshaydi,_lekin_tizim_vaqti-vaqti_bilan_o‘chirilishini_faraz_qiladi}\n");
             cron_found = 1;
             break;
         }
     }
 
     if (!cron_found) {
-        printf("Cron job for every Wednesday at 13:37 not found.\n");
+        printf("Kerakli cron job topilmadis.\n");
     }
 
     fclose(fp);
