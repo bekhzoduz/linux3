@@ -38,6 +38,7 @@ void show_flag_temporarily() {
 }
 
 int main() {
+    printf("Is watch running: %d\n", is_watch_running());
     if (!is_watch_running()) {
         printf("Hech narsa o'zgarmayapti. Dunyo avvalgidek, lekin kelajak har kuni biroz qorong'iroq ko'rinmoqda.\nIltimos! Ketmang. Kimdir buni amalga oshirishi kerak, tushunayapsizmi? Kimdir dunyoni qutqarishi kerak.\nIltimos, kuzatishda davom eting.\n");
         return 0;
