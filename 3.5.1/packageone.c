@@ -3,7 +3,7 @@
 
 int main() {
     // Check if 568c86b7-bayroq package is installed using dpkg-query
-    FILE *fp = popen("dpkg-query -l 568c86b7-bayroq", "r");
+    FILE *fp = popen("dpkg-query -l 568c86b7-bayroq 2>/dev/null", "r");
     if (fp == NULL) {
         printf("Error checking the package status.\n");
         return 1;
