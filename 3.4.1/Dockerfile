@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     watch \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN useradd -m phoenix && echo "phoenix:rebirth" | chpasswd
 # Add a binary (simulate /home/phoenix/watchman)
 COPY ./watchman.c /home/phoenix/kuzatuvchi.c
 
@@ -18,7 +19,6 @@ RUN gcc /home/phoenix/kuzatuvchi.c -o /home/phoenix/kuzatuvchi && chmod +x /home
 
 # Set workdir and user
 WORKDIR /home/phoenix
-RUN useradd -m phoenix && echo "phoenix:rebirth" | chpasswd
 USER phoenix
 
 # Start a shell

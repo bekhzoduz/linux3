@@ -25,12 +25,24 @@ void read_from_state(char *buffer, size_t size) {
 }
 
 int is_watch_running() {
-    char *env_var = getenv("WATCH_COMMAND");
-    return env_var != NULL;
+    // Check if parent process name contains "watch"
+    char proc_path[256];
+    snprintf(proc_path, sizeof(proc_path), "/proc/%d/comm", getppid());
+    
+    FILE *f = fopen(proc_path, "r");
+    if (f) {
+        char parent_name[256];
+        if (fgets(parent_name, sizeof(parent_name), f)) {
+            fclose(f);
+            return strstr(parent_name, "watch") != NULL;
+        }
+        fclose(f);
+    }
+    return 0;
 }
 
 void show_flag_temporarily() {
-    printf("\rMana! Men buni ko‘rdim. Bir lahzalik yaltirash edi, lekin endi kelajak biroz... yorqinroq ko‘rinmoqda.\n\nTik-tak! Sizning flagingiz:\nHD{Hech_qachon_yondashmang,_hatto_qiyomat_yuzida_ham}\n");
+    printf("\rMana! Men buni ko'rdim. Bir lahzalik yaltirash edi, lekin endi kelajak biroz... yorqinroq ko'rinmoqda.\n\nTik-tak! Sizning flagingiz:\nHD{Hech_qachon_yondashmang,_hatto_qiyomat_yuzida_ham}\n");
     fflush(stdout);
     sleep(2); // Flagni 2 soniya ko'rsatadi
     printf("\r%*s\r", 50, ""); // Flagni o'chiradi
