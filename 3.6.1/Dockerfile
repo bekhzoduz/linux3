@@ -42,7 +42,7 @@ RUN mkdir -p /root/cron && mkdir -p /home/phoenix
 USER root
 
 # Create fake user login
-RUN utmpdump /var/log/wtmp > /tmp/wtmp.txt && \
+RUN touch /tmp/wtmp.txt && \
     echo '[1] [0000] [haady pts/1 192.168.1.100 2024-12-01 12:00]' >> /tmp/wtmp.txt && \
     echo '[2] [0000] [alice pts/2 10.0.0.55 2024-12-01 13:15]' >> /tmp/wtmp.txt && \
     echo '[3] [0000] [bob pts/0 172.16.0.100 2024-12-01 14:30]' >> /tmp/wtmp.txt && \
