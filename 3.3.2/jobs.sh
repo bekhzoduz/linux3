@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Tekshiruv - jobs buyruq natijasi bo'sh bo'lsin
-if [ -z "$(command jobs)" ]; then
+if [ ! -z "$(command jobs)" ]; then
     echo "jobs bo'sh emas"
     jobs_output=$(command jobs)
     echo "$jobs_output"
