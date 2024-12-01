@@ -54,7 +54,7 @@ int main() {
     }
 
     time_t last_time = atol(state + strlen("start_time="));
-    if (current_time - last_time >= 60) {
+    if (current_time - last_time >= 10) {
         show_flag_temporarily();
         write_to_state("start_time", "0"); // Vaqtni yangilash
     } else {
