@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 int main() {
-    // Check if 01002-flag package is installed using dpkg-query
-    FILE *fp = popen("dpkg-query -l 01002-flag", "r");
+    // Check if 01002-bayroq package is installed using dpkg-query
+    FILE *fp = popen("dpkg-query -l 01002-bayroq", "r");
     if (fp == NULL) {
         printf("Error checking the package status.\n");
         return 1;
