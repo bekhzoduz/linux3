@@ -41,6 +41,12 @@ RUN mkdir -p /root/cron && mkdir -p /home/phoenix
 
 USER root
 
+# Remove and recreate wtmp file with correct permissions and ownership
+RUN rm -f /var/log/wtmp && \
+    touch /var/log/wtmp && \
+    chmod 664 /var/log/wtmp && \
+    chown root:utmp /var/log/wtmp
+
 # Create fake user login
 RUN touch /tmp/wtmp.txt && \
     echo '[1] [0000] [haady pts/1 192.168.1.100 2024-12-01 12:00]' >> /tmp/wtmp.txt && \
