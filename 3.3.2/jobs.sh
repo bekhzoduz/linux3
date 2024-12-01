@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Tekshiruv - jobs buyruq natijasi bo'sh bo'lsin
 if [ ! -z "$(command jobs)" ]; then
     echo "jobs bo'sh emas"
