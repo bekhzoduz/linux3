@@ -57,7 +57,8 @@ RUN echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/system_m
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/Something_not_useful.c && gcc -m64 /tmp/Something_not_useful.c -o /usr/bin/Something_not_useful && rm -f /tmp/Something_not_useful.c && \
     echo '#include <unistd.h>\nint main(){while(1)sleep(3600);}' > /tmp/idk_what_to_do.c && gcc -m64 /tmp/idk_what_to_do.c -o /usr/bin/idk_what_to_do && rm -f /tmp/idk_what_to_do.c && \
     echo "export ASHES_DONE=0" >> /etc/bash.bashrc && \
-    echo "alias jobs='/tmp/jobs.sh'" >> /etc/bash.bashrc
+    echo "alias jobs='jobs > /tmp/jobs_output && /tmp/jobs.sh'" >> /etc/bash.bashrc && \
+    echo "0" > /tmp/ashes_done
 
 # Add background processes to run on login
 RUN echo "# Start system processes" >> /etc/bash.bashrc && \

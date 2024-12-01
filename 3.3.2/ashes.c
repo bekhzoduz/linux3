@@ -23,7 +23,11 @@ void signal_handler(int signum) {
             // File doesn't exist, print flag
             printf("HD{Endi_men_yana_bir_bor_qayta_tug'ildim}\n");
             printf("Hahaha! Nima qilib qo'yganingni hayolingga ham keltirolmaysan...\nSen meni to'xtatolmaysan...\n");
-            setenv("ASHES_DONE", "1", 1);
+            FILE *file = fopen("/tmp/ashes_done", "w");
+            if (file != NULL) {
+                fprintf(file, "ASHES_DONE=1");
+                fclose(file);
+            }
         }
     }
 }
@@ -80,7 +84,11 @@ int main() {
                 printf("Hahaha! Nima qilib qo'yganingni hayolingga ham keltirolmaysan...\nSen meni to'xtatolmaysan...\n");
                 // Flag printed, set done to 1
                 done = 1;
-                setenv("ASHES_DONE", "1", 1);
+                FILE *file = fopen("/tmp/ashes_done", "w");
+                if (file != NULL) {
+                    fprintf(file, "ASHES_DONE=1");
+                    fclose(file);
+                }
             }
         }
         

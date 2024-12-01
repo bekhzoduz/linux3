@@ -1,14 +1,16 @@
-# Tekshiruv - jobs buyruq natijasi bo'sh bo'lsin
-if [ ! -z "$(command jobs)" ]; then
-    echo "jobs bo'sh emas"
-    jobs_output=$(command jobs)
-    echo "$jobs_output"
-else
-    echo "jobs bo'sh"
-    if [ "$ASHES_DONE" == "1" ]; then
-        echo "ASHES_DONE 1"
-        echo "\n\nPhoenix@Haady dan translatsiya xabari, (qayerdandir) $(date '+%A, %B %d, %H:%M:%S %Y'):\n\nXatosiz g'alaba qozondingiz! Flag:\nHD{Men_yo'qolgan_bo'lishim_mumkin, lekin_qaytaman, mana_siz_hali_ham_orzu_qilayotgan_flag}"
+#!/bin/bash
+
+if [ -f /tmp/jobs_output ]; then
+    jobs_output=$(cat /tmp/jobs_output)
+    if [ -z "$jobs_output" ]; then
+        if [ -f /tmp/ashes_done ]; then
+            ASHES_DONE=$(cat /tmp/ashes_done)
+            if [ "$ASHES_DONE" == "ASHES_DONE=1" ]; then
+                echo $'\n\nPhoenix@Haady dan translatsiya xabari, (qayerdandir) '$(date '+%A, %B %d, %H:%M:%S %Y')$':\n\nXatosiz g\'alaba qozondingiz! Flag:\nHD{Men_yo\'qolgan_bo\'lishim_mumkin, lekin_qaytaman, mana_siz_hali_ham_orzu_qilayotgan_flag}\n'
+            fi
+        fi
     else
-        echo "ASHES_DONE 0"
+        echo "$jobs_output"
     fi
+    rm -f /tmp/jobs_output
 fi
