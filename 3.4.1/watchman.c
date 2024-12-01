@@ -36,13 +36,17 @@ int main() {
 
     if (state[0] == '\0') {
         // Dastur birinchi marta ishlamoqda
-        write_to_state("start_time", "0");
+        char time_str[32];
+        snprintf(time_str, sizeof(time_str), "%ld", current_time);
+        write_to_state("start_time", time_str);
     }
 
     time_t last_time = atol(state + strlen("start_time="));
     if (current_time - last_time >= 10) {  // 10 soniya kutish
         show_flag_temporarily();
-        write_to_state("start_time", "0"); // Vaqtni yangilash
+        char time_str[32];
+        snprintf(time_str, sizeof(time_str), "%ld", current_time);
+        write_to_state("start_time", time_str); // Vaqtni yangilash
     } else {
         printf("Hech narsa o'zgarmayapti. Dunyo avvalgidek, lekin kelajak har kuni biroz qorong'iroq ko'rinmoqda.\nIltimos! Ketmang. Kimdir buni amalga oshirishi kerak, tushunayapsizmi? Kimdir dunyoni qutqarishi kerak.\nIltimos, kuzatishda davom eting.\n");
     }
