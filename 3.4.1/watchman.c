@@ -26,10 +26,6 @@ void read_from_state(char *buffer, size_t size) {
 
 void show_flag_temporarily() {
     printf("\rMana! Men buni ko'rdim. Bir lahzalik yaltirash edi, lekin endi kelajak biroz... yorqinroq ko'rinmoqda.\n\nTik-tak! Sizning flagingiz:\nHD{Hech_qachon_yondashmang,_hatto_qiyomat_yuzida_ham}\n");
-    fflush(stdout);
-    sleep(2); // Flagni 2 soniya ko'rsatadi
-    printf("\r%*s\r", 50, ""); // Flagni o'chiradi
-    fflush(stdout);
 }
 
 int main() {
