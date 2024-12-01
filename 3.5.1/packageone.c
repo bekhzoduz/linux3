@@ -13,7 +13,7 @@ int main() {
     char buffer[1024];
     if (fgets(buffer, sizeof(buffer), fp) == NULL) {
         // Package is not found
-        printf("Flag: HD{Siz_APTitude_sinovidan_muvoffaqiyatli_o'tdingiz}\n");
+        printf("Flag:\nHD{Siz_APTitude_sinovidan_muvoffaqiyatli_o'tdingiz}\n");
     } else {
         // Package is installed
         printf("Error, Nimanidur xato bajardingiz.\n");
