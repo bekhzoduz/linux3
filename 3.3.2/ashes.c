@@ -27,6 +27,8 @@ void signal_handler(int signum) {
             if (file != NULL) {
                 fprintf(file, "ASHES_DONE=1");
                 fclose(file);
+            }else{
+                perror("ashes_done yozishda xatolik\n");
             }
         }
     }
@@ -88,6 +90,8 @@ int main() {
                 if (file != NULL) {
                     fprintf(file, "ASHES_DONE=1");
                     fclose(file);
+                }else{
+                    perror("ashes_done yozishda xatolik\n");
                 }
             }
         }
