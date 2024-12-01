@@ -32,27 +32,27 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
     mkdir -p /root && \
     echo "root:hack123" | chpasswd
 
-# Create the "01002-flag" package
+# Create the "01002-bayroq" package
 WORKDIR /tmp
-RUN mkdir -p 01002-flag/DEBIAN && mkdir -p 01002-flag/usr/bin
+RUN mkdir -p 01002-bayroq/DEBIAN && mkdir -p 01002-bayroq/usr/bin
 
-# Create the binary for 01002-flag
-RUN echo '#!/bin/bash' > 01002-flag/usr/bin/01002-flag \
-    && echo 'echo "HD{Bu_juda_muvofiq_qilib_bajarildi!}"' >> 01002-flag/usr/bin/01002-flag \
-    && chmod +x 01002-flag/usr/bin/01002-flag
+# Create the binary for 01002-bayroq
+RUN echo '#!/bin/bash' > 01002-bayroq/usr/bin/01002-bayroq \
+    && echo 'echo "Yaxshi bajardingiz!\nFlag: HD{Bu_juda_muvofiq_qilib_bajarildi!}"' >> 01002-bayroq/usr/bin/01002-bayroq \
+    && chmod +x 01002-bayroq/usr/bin/01002-bayroq
 
 
-# Add control file for "01002-flag"
-RUN echo "Package: 01002-flag" > 01002-flag/DEBIAN/control \
-    && echo "Version: 1.0" >> 01002-flag/DEBIAN/control \
-    && echo "Section: base" >> 01002-flag/DEBIAN/control \
-    && echo "Priority: optional" >> 01002-flag/DEBIAN/control \
-    && echo "Architecture: all" >> 01002-flag/DEBIAN/control \
-    && echo "Maintainer: Test <test@example.com>" >> 01002-flag/DEBIAN/control \
-    && echo "Description: A dummy application for retrieving flags." >> 01002-flag/DEBIAN/control
+# Add control file for "01002-bayroq"
+RUN echo "Package: 01002-bayroq" > 01002-bayroq/DEBIAN/control \
+    && echo "Version: 1.0" >> 01002-bayroq/DEBIAN/control \
+    && echo "Section: base" >> 01002-bayroq/DEBIAN/control \
+    && echo "Priority: optional" >> 01002-bayroq/DEBIAN/control \
+    && echo "Architecture: all" >> 01002-bayroq/DEBIAN/control \
+    && echo "Maintainer: Haady <haady@haad.ai>" >> 01002-bayroq/DEBIAN/control \
+    && echo "Description: A dummy application for retrieving flags." >> 01002-bayroq/DEBIAN/control
 
-# Build and install "01002-flag"
-RUN dpkg-deb --build 01002-flag && dpkg -i 01002-flag.deb
+# Build and install "01002-bayroq"
+RUN dpkg-deb --build 01002-bayroq && dpkg -i 01002-bayroq.deb
 
 # Create another package "OSpackage_1.0-1.deb"
 RUN mkdir -p OSpackage/DEBIAN && mkdir -p OSpackage/usr/bin
