@@ -36,7 +36,11 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
     echo "phoenix:phoenix" | chpasswd && \
     usermod -aG sudo phoenix && \
     useradd -m -d /home/chuck -s /bin/bash chuck && \
-    echo "chuck:chuck" | chpasswd
+    echo "chuck:chuck" | chpasswd && \
+    useradd -m -d /home/root -s /bin/bash root && \
+    echo "root:root" | chpasswd
+
+USER root
 
 # Add incorrect directive to Apache configuration to generate an error
 RUN echo 'IncorrectDirective' >> /etc/apache2/apache2.conf
