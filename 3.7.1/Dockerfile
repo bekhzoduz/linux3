@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     bsdutils \
-    systemd \
+    systemctl \
     apache2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /run/systemd && \
     mkdir -p /var/log/journal && \
     chmod 2755 /var/log/journal
+
 
 # Create users
 RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
@@ -40,13 +41,16 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
 # Add incorrect directive to Apache configuration to generate an error
 RUN echo 'IncorrectDirective' >> /etc/apache2/apache2.conf
 
+
 # Create Apache log directory
 RUN mkdir -p /var/log/apache2
 RUN touch /var/log/apache2/apache-custom.log
 RUN touch /var/log/apache2/apache-custom.log1
 
-# Enable Apache service for testing
-RUN systemctl enable apache2
+COPY start-apache-service.sh /start-apache-service.sh
+RUN chmod +x /start-apache-service.sh && \
+    /start-apache-service.sh
+
 
 # Copy the Python script into the container
 COPY generate_fake_wtmp.py /generate_fake_wtmp.py
