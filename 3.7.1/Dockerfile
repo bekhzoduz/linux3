@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     bsdutils \
-    apache2 \
     systemctl \
+    apache2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
