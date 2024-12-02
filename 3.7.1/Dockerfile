@@ -35,7 +35,7 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
 # Add incorrect directive to Apache configuration to generate an error
 RUN echo 'IncorrectDirective' >> /etc/apache2/apache2.conf
 RUN sudo mkdir -p /var/log/journal
-RUN sudo chown root:systemd-journal /var/log/journal && \
+RUN sudo chown root:root /var/log/journal && \
     sudo chmod 2755 /var/log/journal
     
 
