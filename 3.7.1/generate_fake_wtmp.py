@@ -4,10 +4,10 @@ import time
 # Define fake login entries
 fake_logins = [
     ("haady", "tty1", "192.168.0.1", int(time.mktime(time.strptime("2005-07-25", "%Y-%m-%d")))),
-    ("John", "tty2", "1.1.1.1", int(time.mktime(time.strptime("2005-08-27", "%Y-%m-%d")))), 
-    ("Kaf", "tty3", "2.0.0.5", int(time.mktime(time.strptime("2005-08-21", "%Y-%m-%d")))),
-    ("Nzrv", "tty4", "192.168.17.07", int(time.mktime(time.strptime("2005-09-01", "%Y-%m-%d")))),
-    ("chuck", "tty5", "10.0.0.1", int(time.time() - 3600)),
+    ("John", "tty1", "1.1.1.1", int(time.mktime(time.strptime("2005-08-27", "%Y-%m-%d")))), 
+    ("Kaf", "tty1", "2.0.0.5", int(time.mktime(time.strptime("2005-08-21", "%Y-%m-%d")))),
+    ("Nzrv", "tty1", "192.168.17.07", int(time.mktime(time.strptime("2005-09-01", "%Y-%m-%d")))),
+    ("chuck", "tty1", "10.0.0.1", int(time.time() - 3600)),
 ]
 
 # Create the fake wtmp file
