@@ -36,9 +36,7 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
     echo "phoenix:phoenix" | chpasswd && \
     usermod -aG sudo phoenix && \
     useradd -m -d /home/chuck -s /bin/bash chuck && \
-    echo "chuck:chuck" | chpasswd && \
-    useradd -m -d /home/root -s /bin/bash root && \
-    echo "root:root" | chpasswd
+    echo "chuck:chuck" | chpasswd
 
 USER root
 
