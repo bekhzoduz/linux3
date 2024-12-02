@@ -7,7 +7,7 @@ fake_logins = [
     ("John", "tty2", "1.1.1.1", int(time.mktime(time.strptime("2005-08-27", "%Y-%m-%d")))),
     ("Kaf", "tty3", "2.0.0.5", int(time.mktime(time.strptime("2005-08-21", "%Y-%m-%d")))),
     ("Nzrv", "tty4", "192.168.17.7", int(time.mktime(time.strptime("2005-07-17", "%Y-%m-%d")))),
-    ("chuck", "tty5", "10.0.0.2", int(time.time() - 3600)),
+    ("chuck", "tty1", "10.0.0.2", int(time.time() - 3600)),
     ("root", "pts/0", "10.0.0.1", int(time.time())),
 ]
 
