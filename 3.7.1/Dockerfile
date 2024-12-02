@@ -3,6 +3,7 @@ FROM ubuntu:20.04
 # Set non-interactive mode for apt-get
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Install necessary packages
 RUN apt-get update && apt-get install -y \
     gcc \
     make \
@@ -19,7 +20,7 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     bsdutils \
-    systemctl \
+    systemd \
     apache2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -31,13 +32,10 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
     useradd -m -d /home/chuck -s /bin/bash chuck && \
     echo "chuck:chuck" | chpasswd
 
-# Add incorrect directive to apache2 config to generate errors
-RUN echo 'IncorrectDirective\n' >> /etc/apache2/apache2.conf
+# Add incorrect directive to Apache configuration to generate an error
+RUN echo 'IncorrectDirective' >> /etc/apache2/apache2.conf
 
-
-
-    
-#Create apache2 log directory
+# Create Apache log directory
 RUN mkdir -p /var/log/apache2
 RUN touch /var/log/apache2/apache-custom.log
 RUN touch /var/log/apache2/apache-custom.log1
@@ -54,6 +52,8 @@ RUN chmod 644 /var/log/wtmp
 # Clean up the Python script
 RUN rm /generate_fake_wtmp.py
 
+# Set non-root user and working directory
 USER phoenix
 WORKDIR /home/phoenix
+
 CMD ["bash"]
