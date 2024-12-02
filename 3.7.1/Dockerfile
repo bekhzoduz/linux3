@@ -15,13 +15,19 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     tar \
     unzip \
-    sysvinit-utils \
     net-tools \
     python3 \
     python3-pip \
     bsdutils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+
+RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
+    echo "phoenix:phoenix" | chpasswd && \
+    usermod -aG sudo phoenix && \
+    useradd -m -d /home/chuck -s /bin/bash chuck && \
+    echo "chuck:chuck" | chpasswd
 
 # Copy the Python script into the container
 COPY generate_fake_wtmp.py /generate_fake_wtmp.py
@@ -34,4 +40,7 @@ RUN chmod 644 /var/log/wtmp
 
 # Clean up the Python script
 RUN rm /generate_fake_wtmp.py
+
+USER phoenix
+WORKDIR /home/phoenix
 CMD ["bash"]
