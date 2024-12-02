@@ -20,10 +20,16 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     bsdutils \
+    systemd \
     systemctl \
     apache2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Ensure systemd directories exist
+RUN mkdir -p /run/systemd && \
+    mkdir -p /var/log/journal && \
+    chmod 2755 /var/log/journal
 
 # Create users
 RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
@@ -34,15 +40,14 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
 
 # Add incorrect directive to Apache configuration to generate an error
 RUN echo 'IncorrectDirective' >> /etc/apache2/apache2.conf
-RUN sudo mkdir -p /var/log/journal
-RUN sudo chown root:root /var/log/journal && \
-    sudo chmod 2755 /var/log/journal
-    
 
 # Create Apache log directory
 RUN mkdir -p /var/log/apache2
 RUN touch /var/log/apache2/apache-custom.log
 RUN touch /var/log/apache2/apache-custom.log1
+
+# Enable Apache service for testing
+RUN systemctl enable apache2
 
 # Copy the Python script into the container
 COPY generate_fake_wtmp.py /generate_fake_wtmp.py
@@ -56,8 +61,12 @@ RUN chmod 644 /var/log/wtmp
 # Clean up the Python script
 RUN rm /generate_fake_wtmp.py
 
+# Fix permissions for systemd and logs
+RUN chown -R root:root /var/log/apache2 && chmod -R 644 /var/log/apache2/*
+
 # Set non-root user and working directory
 USER phoenix
 WORKDIR /home/phoenix
 
-CMD ["bash"]
+# Start systemd in the background and then launch bash
+CMD ["/bin/bash", "-c", "nohup /lib/systemd/systemd & bash"]
