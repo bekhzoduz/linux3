@@ -15,16 +15,19 @@ output_file = "/var/log/wtmp"
 with open(output_file, "wb") as f:
     for user, tty, host, timestamp in fake_logins:
         entry = struct.pack(
-            "hi32s4s32s256s2i36x",  # Binary format for utmp structure
+            "hi32s4s32s256shhiii36x",  # Adjusted format
             7,  # Type of entry (USER_PROCESS)
             0,  # PID (not used)
-            tty.encode("utf-8"),
+            tty.encode("utf-8"),  # TTY name
             b"",  # ID (empty)
-            user.encode("utf-8"),
-            host.encode("utf-8"),
+            user.encode("utf-8"),  # Username
+            host.encode("utf-8"),  # Hostname
+            0,  # Exit status
+            0,  # Reserved
             timestamp,  # Login time
             timestamp,  # Logout time
         )
+
         f.write(entry)
 
 print(f"Fake wtmp file created at {output_file}")
