@@ -4,7 +4,7 @@ import time
 # Define fake login entries
 fake_logins = [
     ("haady", "tty1", "192.168.0.1", int(time.mktime(time.strptime("2005-07-25", "%Y-%m-%d")))),
-    ("John", "tty1", "1.1.1.1", int(time.mktime(time.strptime("2005-08-27", "%Y-%m-%d")))), 
+    ("John", "tty1", "1.1.1.1", int(time.mktime(time.strptime("2005-08-27", "%Y-%m-%d")))),
     ("Kaf", "tty1", "2.0.0.5", int(time.mktime(time.strptime("2005-08-21", "%Y-%m-%d")))),
     ("Nzrv", "tty1", "192.168.17.07", int(time.mktime(time.strptime("2005-09-01", "%Y-%m-%d")))),
     ("chuck", "tty1", "10.0.0.1", int(time.time() - 3600)),
@@ -15,7 +15,7 @@ output_file = "/var/log/wtmp"
 with open(output_file, "wb") as f:
     for user, tty, host, timestamp in fake_logins:
         entry = struct.pack(
-            "hi32s4s32s256shhiii36x",  # Adjusted format
+            "hi32s4s32s256shhii36x",  # Corrected format
             7,  # Type of entry (USER_PROCESS)
             0,  # PID (not used)
             tty.encode("utf-8"),  # TTY name
@@ -27,7 +27,6 @@ with open(output_file, "wb") as f:
             timestamp,  # Login time
             timestamp,  # Logout time
         )
-
         f.write(entry)
 
 print(f"Fake wtmp file created at {output_file}")
