@@ -31,6 +31,12 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
     useradd -m -d /home/chuck -s /bin/bash chuck && \
     echo "chuck:chuck" | chpasswd
 
+# Add incorrect directive to apache2 config to generate errors
+RUN echo 'IncorrectDirective\n' >> /etc/apache2/apache2.conf
+
+
+
+    
 #Create apache2 log directory
 RUN mkdir -p /var/log/apache2
 RUN touch /var/log/apache2/apache-custom.log
