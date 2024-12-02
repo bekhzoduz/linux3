@@ -22,12 +22,17 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-
+# Create users
 RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
     echo "phoenix:phoenix" | chpasswd && \
     usermod -aG sudo phoenix && \
     useradd -m -d /home/chuck -s /bin/bash chuck && \
     echo "chuck:chuck" | chpasswd
+
+#Create apache2 log directory
+RUN mkdir -p /var/log/apache2
+RUN touch /var/log/apache2/apache-custom.log
+RUN touch /var/log/apache2/apache-custom.log1
 
 # Copy the Python script into the container
 COPY generate_fake_wtmp.py /generate_fake_wtmp.py
