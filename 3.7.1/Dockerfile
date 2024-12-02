@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     tar \
     unzip \
-    runlevel \
+    sysvinit-utils \
     net-tools \
     python3 \
     python3-pip \
