@@ -35,8 +35,8 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
     echo "root:hack123" | chpasswd
 
 
-# Copy the flag image into the mounted ext4 file system
-COPY flag.img.1 /mnt/ext4/flash.img
+# Copy the flag image into the root directory
+COPY flag.img /root/flag.img
 
 
 
