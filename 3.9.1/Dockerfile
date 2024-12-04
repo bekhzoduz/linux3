@@ -32,21 +32,21 @@ RUN useradd -m brandon && \
     echo "brandon:moneytree" | sudo chpasswd && \
     usermod -aG sudo brandon && \
     useradd -m katy && \
-    echo "katy:hellowworld" | sudo chpasswd && \
+    echo "katy:jurisdiction" | sudo chpasswd && \
     usermod -aG sudo katy && \
     mkdir -p /home/brandon/
 
-COPY ./3.9.1.1.sh /home/brandon/generate_files.sh
 
-RUN bash /home/brandon/generate_files.sh 
+RUN echo "HD{Linux_ko'nikmalarimizni_sinab_ko'rish_vaqti_keldi}\n" > /home/brandon/flag.txt && \
+    echo "Lorem ipsum dolor sit amet, consectetur adipiscing elit." > /docs.txt && \
+    echo "From your friend, Katy.\n\nNo reply!" > /email.doc && \
+    echo "HRni seshanba kuni 09:00 da uchrashuvi bor" > /home/important.doc && \
+    echo "DATE,USER,MESSAGE\n2005-07-17,brandon,Salom Dunyo!\n2005-08-21,katy,Eng zo'r tizim!" > /home/info.csv && \
+    echo "Qayerga bormang, baribir o‘sha yerda o‘zingiz bo‘lasiz" > /home/stuff.txt
 
-RUN rm -rf /home/brandon/generate_files.sh 
-    
-COPY ./3.9.1.2.sh /home/brandon/generate_files.sh
+RUN echo "MACHINE|USERNAME|PASSWORD\nlocalhost|katy|jurisdiction" > /katy-stuff.csv && \
+    echo "HD{tez_orada_bu_quti_sizniki_bo'ladi}\n" > /home/katy/flag.txt
 
-RUN bash /home/brandon/generate_files.sh 
-
-RUN rm -rf /home/brandon/generate_files.sh
 
 COPY ./newuser_check.c /home/katy/
 
