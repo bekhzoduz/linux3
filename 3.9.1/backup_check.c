@@ -26,7 +26,7 @@ int check_backup_file() {
 
     // Check if the file is executable
     if (!(fileStat.st_mode & S_IXUSR)) {
-        printf("%s fayli bajarilishi mumkin emas.\n", BACKUP_FILE);
+        printf("%s faylida bajarish xususiyati yo'q.\n", BACKUP_FILE);
         return 0;
     }
 
@@ -65,12 +65,6 @@ int check_crontab() {
             }
             fclose(fp);
         }
-    }
-
-    if (found) {
-        printf("Crontab entry topildi: %s\n", CRONTAB_ENTRY);
-    } else {
-        printf("Kerakli crontab yozuvi topilmadi.\n");
     }
 
     return found;
