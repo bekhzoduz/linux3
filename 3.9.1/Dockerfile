@@ -48,7 +48,7 @@ RUN echo "HD{Linux_ko'nikmalarimizni_sinab_ko'rish_vaqti_keldi}\n" > /home/brand
 RUN echo "MACHINE|USERNAME|PASSWORD\nlocalhost|katy|jurisdiction" > /katy-stuff.csv && \
     echo "HD{tez_orada_bu_quti_sizniki_bo'ladi}\n" > /home/katy/flag.txt
 
-COPY ./usb /dev/
+COPY ./usb /usr/bin/usb
 
 COPY ./newuser_check.c /home/katy/
 
