@@ -18,48 +18,57 @@ int check_backup_file() {
         return 0;
     }
 
-    // Check if the owner is root (UID 0)
-    struct passwd *pw = getpwuid(fileStat.st_uid);
-    if (pw == NULL || fileStat.st_uid != 0 || fileStat.st_gid != 0 || !(fileStat.st_mode & S_IXUSR)) {
-        printf("%s fayli root:root ga tegishli emas yoki kerakli xususiyatlar yo'q.\n", BACKUP_FILE);
+    // Check if the owner is root (UID 0) and group is root (GID 0)
+    if (fileStat.st_uid != 0 || fileStat.st_gid != 0) {
+        printf("%s fayli root:root ga tegishli emas.\n", BACKUP_FILE);
         return 0;
     }
+
+    // Check if the file is executable
+    if (!(fileStat.st_mode & S_IXUSR)) {
+        printf("%s fayli bajarilishi mumkin emas.\n", BACKUP_FILE);
+        return 0;
+    }
+
     return 1;
 }
 
 // Function to check if crontab entry exists
 int check_crontab() {
-    FILE *fp = popen("crontab -l 2>/dev/null", "r");
-    if (fp == NULL) {
-        // Try reading from /etc/crontab if crontab -l fails
-        fp = fopen("/etc/crontab", "r");
-        if (fp == NULL) {
-            printf("Crontab o'qishda muammo yuz berdi.\n");
-            return 0;
-        }
-    }
+    FILE *fp;
     char buffer[256];
-    printf("\nCurrent crontab entries:\n");
-    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
-        printf("%s", buffer);
-    }
-    rewind(fp);
-
-
-    char line[256];
     int found = 0;
 
-    // Search for the specific crontab entry
-    while (fgets(line, sizeof(line), fp) != NULL) {
-        if (strcmp(line, CRONTAB_ENTRY) == 0) {
-            found = 1;
-            break;
+    // First try reading from the user crontab
+    fp = popen("crontab -l 2>/dev/null", "r");
+    if (fp != NULL) {
+        while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+            // Trim whitespace and check if the crontab entry exists
+            if (strstr(buffer, CRONTAB_ENTRY)) {
+                found = 1;
+                break;
+            }
+        }
+        fclose(fp);
+    }
+
+    // If not found in user crontab, check /etc/crontab for system-wide crons
+    if (!found) {
+        fp = fopen("/etc/crontab", "r");
+        if (fp != NULL) {
+            while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+                // Trim whitespace and check if the crontab entry exists
+                if (strstr(buffer, CRONTAB_ENTRY)) {
+                    found = 1;
+                    break;
+                }
+            }
+            fclose(fp);
         }
     }
-    pclose(fp);
 
     if (found) {
-        printf("Crontab entry topildi: %s", CRONTAB_ENTRY);
+        printf("Crontab entry topildi: %s\n", CRONTAB_ENTRY);
     } else {
         printf("Kerakli crontab yozuvi topilmadi.\n");
     }
