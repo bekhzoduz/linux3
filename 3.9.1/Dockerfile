@@ -29,13 +29,12 @@ RUN apt-get update && apt-get install -y \
 
 USER root
 
-RUN useradd -m brandon && \
+RUN useradd -m -s /bin/bash brandon && \
     echo "brandon:moneytree" | sudo chpasswd && \
     usermod -aG sudo brandon && \
-    useradd -m katy && \
+    useradd -m -s /bin/bash katy && \
     echo "katy:jurisdiction" | sudo chpasswd && \
-    usermod -aG sudo katy && \
-    mkdir -p /home/brandon/
+    usermod -aG sudo katy
 
 
 RUN echo "HD{Linux_ko'nikmalarimizni_sinab_ko'rish_vaqti_keldi}\n" > /home/brandon/flag.txt && \
