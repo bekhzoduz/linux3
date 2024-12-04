@@ -38,6 +38,13 @@ int check_crontab() {
             return 0;
         }
     }
+    char buffer[256];
+    printf("\nCurrent crontab entries:\n");
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        printf("%s", buffer);
+    }
+    rewind(fp);
+
 
     char line[256];
     int found = 0;
