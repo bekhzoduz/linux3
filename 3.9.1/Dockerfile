@@ -47,6 +47,7 @@ RUN echo "HD{Linux_ko'nikmalarimizni_sinab_ko'rish_vaqti_keldi}\n" > /home/brand
 
 RUN echo "MACHINE|USERNAME|PASSWORD\nlocalhost|katy|jurisdiction" > /katy-stuff.csv && \
     echo "HD{tez_orada_bu_quti_sizniki_bo'ladi}\n" > /home/katy/flag.txt
+
 RUN mkdir -p /etc/flash-drive
 
 COPY ./usb /etc/flash-drive/
@@ -59,6 +60,18 @@ RUN rm -rf /home/katy/newuser_check.c && \
     chmod 750 /home/katy/newuser_check
 
 RUN echo "HD{Qirollik_uchun_kalit}" > /root/.hidden_file.txt
+
+RUN mkdir -p /tmp/files && \
+    echo "Name,Age,City,Role\nAbdulaziz,19,Namangan,CEO\nAbdurauf,30,Toshkent,Manager" > /tmp/files/employees.csv && \
+    echo "Product,Price,Quantity\nLaptop,999.99,50\nPhone,499.99,100" > /tmp/files/inventory.csv && \
+    echo "Date,Transaction,Amount\n2023-01-01,Sale,1500\n2023-01-02,Purchase,750" > /tmp/files/transactions.csv && \
+    echo "Student,Grade,Subject\nAlex,A,Math\nEmma,B,Science" > /tmp/files/grades.csv && \
+    echo "Project Status Report\n\nProject: Alpha\nStatus: In Progress\nDeadline: Q4 2023" > /tmp/files/report1.doc && \
+    echo "Meeting Minutes\n\nDate: 2023-09-15\nAttendees: Team A\nAgenda: Q4 Planning" > /tmp/files/minutes.doc && \
+    echo "Technical Specification\n\nProduct: Beta v2.0\nRequirements: See attached" > /tmp/files/spec.doc && \
+    echo "Proposal Document\n\nClient: XYZ Corp\nValue: $50,000\nTimeline: 6 months" > /tmp/files/proposal.doc && \
+    echo "Weekly Update\n\nTeam: Development\nProgress: 75%\nBlockers: None" > /tmp/files/update.doc
+
 
 COPY ./backup_check.c /root/
 
