@@ -43,7 +43,7 @@ int main() {
         printf("Barakalla!\nFlag:\nHD{backdoor_foydalanuvchilarini_o'rnatish_yaxshi_va_yomon}\n");
     } else {
         if (!jesse_has_primary || !jesse_has_sudo) {
-            printf("Jesse foydalanuvchisi kerakli ruxsatlar berilmagan!s\n");
+            printf("Jesse foydalanuvchisi kerakli ruxsatlar berilmagan!\n");
         }
     }
 
