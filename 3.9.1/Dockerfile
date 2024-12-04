@@ -48,29 +48,7 @@ RUN echo "HD{Linux_ko'nikmalarimizni_sinab_ko'rish_vaqti_keldi}\n" > /home/brand
 RUN echo "MACHINE|USERNAME|PASSWORD\nlocalhost|katy|jurisdiction" > /katy-stuff.csv && \
     echo "HD{tez_orada_bu_quti_sizniki_bo'ladi}\n" > /home/katy/flag.txt
 
-# COPY ./usb /dev/
-
-
-# Create the fake usb disk file (1 GB for example)
-RUN dd if=/dev/zero of=/root/usb.img bs=1M count=10
-
-# Create a loopback device /dev/usb
-RUN losetup /dev/loop0 /root/usb.img
-
-# Format the loopback device as vfat (FAT32 filesystem)
-RUN mkfs.vfat /dev/loop0
-
-# Create a mount point and mount the loopback device
-RUN mkdir /mnt/usb && \
-    mount /dev/loop0 /mnt/usb
-
-# Create files inside the mounted USB disk
-RUN echo "HD{Regulyatorlar_o'rnating!}" > /mnt/usb/flag.txt && \
-    echo "Bu yerda nimadir bor deb o'ylaysizmi?" > /mnt/usb/bad-flag.csv && \
-    echo "HD{Meni_topganingdan_xursandman)}" > /mnt/usb/wrong-flag.doc
-
-# Unmount the disk and detach the loopback device
-RUN umount /mnt/usb && losetup -d /dev/loop0
+COPY ./usb /dev/
 
 COPY ./newuser_check.c /home/katy/
 
