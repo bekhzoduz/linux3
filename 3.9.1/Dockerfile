@@ -52,7 +52,7 @@ RUN echo "MACHINE|USERNAME|PASSWORD\nlocalhost|katy|jurisdiction" > /katy-stuff.
 
 
 # Create the fake usb disk file (1 GB for example)
-RUN dd if=/dev/zero of=/root/usb.img bs=1M count=10s
+RUN dd if=/dev/zero of=/root/usb.img bs=1M count=10
 
 # Create a loopback device /dev/usb
 RUN losetup /dev/loop0 /root/usb.img
