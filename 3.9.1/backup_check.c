@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 #define BACKUP_FILE "/usr/bin/backup"
-#define CRONTAB_ENTRY "0 2 * * * /usr/bin/backup\n"
+#define CRONTAB_ENTRY "0 2 * * * root /usr/bin/backup"
 
 // Function to check if the file exists and is owned by root
 int check_backup_file() {
@@ -20,8 +20,8 @@ int check_backup_file() {
 
     // Check if the owner is root (UID 0)
     struct passwd *pw = getpwuid(fileStat.st_uid);
-    if (pw == NULL || fileStat.st_uid != 0 || fileStat.st_gid != 0) {
-        printf("%s fayli root:root ga tegishli emas.\n", BACKUP_FILE);
+    if (pw == NULL || fileStat.st_uid != 0 || fileStat.st_gid != 0 || !(fileStat.st_mode & S_IXUSR)) {
+        printf("%s fayli root:root ga tegishli emas yoki kerakli xususiyatlar yo'q.\n", BACKUP_FILE);
         return 0;
     }
     return 1;
