@@ -14,18 +14,16 @@ int check_backup_file() {
 
     // Check if file exists
     if (stat(BACKUP_FILE, &fileStat) < 0) {
-        printf("File %s does not exist.\n", BACKUP_FILE);
+        printf("%s fayli mavjud emas.\n", BACKUP_FILE);
         return 0;
     }
 
     // Check if the owner is root (UID 0)
     struct passwd *pw = getpwuid(fileStat.st_uid);
     if (pw == NULL || fileStat.st_uid != 0) {
-        printf("File %s is not owned by root.\n", BACKUP_FILE);
+        printf("%s fayli root foydalanuvchisiga tegishli emas.\n", BACKUP_FILE);
         return 0;
     }
-
-    printf("File %s exists and is owned by root.\n", BACKUP_FILE);
     return 1;
 }
 
@@ -33,7 +31,7 @@ int check_backup_file() {
 int check_crontab() {
     FILE *fp = popen("crontab -l", "r");
     if (fp == NULL) {
-        printf("Failed to read crontab.\n");
+        printf("Crontab o'qishda muammo yuz berdi.\n");
         return 0;
     }
 
@@ -50,9 +48,9 @@ int check_crontab() {
     pclose(fp);
 
     if (found) {
-        printf("Crontab entry found: %s", CRONTAB_ENTRY);
+        printf("Crontab entry topildi: %s", CRONTAB_ENTRY);
     } else {
-        printf("Required crontab entry not found.\n");
+        printf("Kerakli crontab yozuvi topilmadi.\n");
     }
 
     return found;
@@ -62,7 +60,7 @@ int main() {
     if (check_backup_file() && check_crontab()) {
         printf("HD{Endi_mashina_yaxshi_va_haqiqatan sizniki. Tabriklaymiz!}\n");
     } else {
-        printf("Conditions not met. Please check the file and crontab configuration.\n");
+        printf("Shartlar bajarilmadi. Fayl va crontab konfiguratsiyasini tekshiring.\n");
     }
     return 0;
 }

@@ -59,7 +59,8 @@ RUN gcc /home/katy/newuser_check.c -o /home/katy/newuser_check
 RUN rm -rf /home/katy/newuser_check.c && \
     chmod 750 /home/katy/newuser_check
 
-RUN echo "HD{Qirollik_uchun_kalit}" > /root/.hidden_file.txt
+RUN echo "HD{Qirollik_uchun_kalit}\n" > /root/.flag
+
 
 RUN mkdir -p /tmp/files && \
     echo "Name,Age,City,Role\nAbdulaziz,19,Namangan,CEO\nAbdurauf,30,Toshkent,Manager" > /tmp/files/employees.csv && \
