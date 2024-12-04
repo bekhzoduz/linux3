@@ -20,8 +20,7 @@ int check_backup_file() {
 
     // Check if the owner is root (UID 0)
     struct passwd *pw = getpwuid(fileStat.st_uid);
-    struct group *gr = getgrgid(fileStat.st_gid);
-    if (pw == NULL || gr == NULL || fileStat.st_uid != 0 || fileStat.st_gid != 0) {
+    if (pw == NULL || fileStat.st_uid != 0 || fileStat.st_gid != 0) {
         printf("%s fayli root:root ga tegishli emas.\n", BACKUP_FILE);
         return 0;
     }
