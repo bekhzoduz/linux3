@@ -29,10 +29,14 @@ int check_backup_file() {
 
 // Function to check if crontab entry exists
 int check_crontab() {
-    FILE *fp = popen("crontab -l", "r");
+    FILE *fp = popen("crontab -l 2>/dev/null", "r");
     if (fp == NULL) {
-        printf("Crontab o'qishda muammo yuz berdi.\n");
-        return 0;
+        // Try reading from /etc/crontab if crontab -l fails
+        fp = fopen("/etc/crontab", "r");
+        if (fp == NULL) {
+            printf("Crontab o'qishda muammo yuz berdi.\n");
+            return 0;
+        }
     }
 
     char line[256];
