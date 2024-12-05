@@ -75,4 +75,4 @@ USER phoenix
 WORKDIR /home/phoenix
 
 # Start systemd in the background and then launch bash
-CMD ["/lib/systemd/systemd", "--unit=apache2.service", "&&", "bash"]
+CMD ["/lib/systemd/systemd"]
