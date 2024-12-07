@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     bsdutils \
+    apache2 \
     apache2-bin \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -27,7 +28,7 @@ RUN apt-get update && apt-get install -y \
 # Ensure systemd directories exist
 RUN mkdir -p /run/systemd && \
     mkdir -p /var/log/journal && \
-    chmod 2755 /var/log/journal
+    chmod 755 /var/log/journal
 
 # Create users
 RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
@@ -39,8 +40,21 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
 
 USER root
 
+# Create fake systemctl script
+COPY fake_systemctl.sh /usr/bin/systemctl
+RUN chmod +x /usr/bin/systemctl
+
+#Create fake journalctl script
+COPY fake_journalctl.sh /usr/bin/journalctl
+RUN chmod +x /usr/bin/journalctl
+
+#Create apache_check.sh script
+COPY apache_check.sh /usr/bin/apache_check
+RUN chmod +x /usr/bin/apache_check
+RUN /usr/bin/apache_check
 # Add incorrect directive to Apache configuration to generate an error
 RUN echo 'IncorrectDirective' >> /etc/apache2/apache2.conf
+
 
 # Create Apache log directory
 RUN mkdir -p /var/log/apache2
