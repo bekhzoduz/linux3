@@ -21,7 +21,6 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     bsdutils \
     apache2 \
-    sysvinit-utils \
     apache2-bin \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -53,6 +52,9 @@ RUN chmod +x /usr/bin/systemctl
 #Create fake journalctl script
 COPY fake_journalctl.sh /usr/bin/journalctl
 RUN chmod +x /usr/bin/journalctl
+
+#Create fake runlevel alias
+RUN echo "alias runlevel='echo N 5'" >> /etc/bash.bashrc
 
 # Fix Apache directive error
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
