@@ -22,6 +22,11 @@ print_message() {
         *) echo "$message" ;;
     esac
 }
+# Simulate systemctl actions
+if [ -z "$1" ]; then
+    print_message warning "Usage: $0 {start|stop|restart|status|enable|disable|list-units}"
+    exit 1
+fi
 
 case $2 in
     apache2)
@@ -33,7 +38,7 @@ case $2 in
 esac
 
 # Simulate systemctl actions
-case "$1" in
+case $1 in
     "")
         echo "Usage: $0 {start|stop|restart|status|enable|disable|list-units}"
         exit 1
