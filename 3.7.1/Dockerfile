@@ -85,4 +85,4 @@ USER phoenix
 WORKDIR /home/phoenix
 
 # Start systemd in the background and then launch bash
-CMD ["/lib/systemd/systemd"]
+CMD ["/bin/bash"]
