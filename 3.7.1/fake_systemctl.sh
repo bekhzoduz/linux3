@@ -35,7 +35,7 @@ esac
 # Simulate systemctl actions
 case "$1" in
     "")
-        print_message warning "Usage: $0 {start|stop|restart|status|enable|disable|list-units}"
+        echo "Usage: $0 {start|stop|restart|status|enable|disable|list-units}"
         exit 1
         ;;
     start)
