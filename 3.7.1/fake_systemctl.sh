@@ -30,6 +30,7 @@ case $2 in
         echo "Failed to $1 $2.service: Unit $2.service not found."
         exit 1
         ;;
+esac
 
 # Simulate systemctl actions
 case "$1" in
