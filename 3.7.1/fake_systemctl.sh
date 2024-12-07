@@ -40,7 +40,7 @@ case "$1" in
             print_message success "Apache service started successfully."
         else
             log_action "apache2.service: Failed to start - Configuration error"
-            print_message error "Apache service failed to start due to configuration error."
+            print_message error "Apache service failed to start due to configuration error. Use 'journalctl -xe' to view detailed logs."
         fi
         ;;
     stop)
@@ -54,7 +54,7 @@ case "$1" in
             print_message success "Apache service restarted successfully."
         else
             log_action "apache2.service: Failed to restart - Configuration error"
-            print_message error "Apache service failed to restart due to configuration error."
+            print_message error "Apache service failed to restart due to configuration error. Use 'journalctl -xe' to view detailed logs."
         fi
         ;;
     status)
