@@ -5,7 +5,7 @@ LOG_FILE="/tmp/.something.log"
 case "$1" in
     start)
         # Check Apache config syntax
-        apache2ctl configtest > /dev/null 2>&1
+        apache2ctl configtest 2> "$LOG_FILE"
         if [ $? -eq 0 ]; then
             echo "$(date '+%b %d %H:%M:%S') apache2.service: Started" >> "$LOG_FILE"
             echo "Apache service started"
