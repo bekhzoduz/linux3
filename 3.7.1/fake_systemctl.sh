@@ -34,6 +34,10 @@ esac
 
 # Simulate systemctl actions
 case "$1" in
+    "")
+        print_message warning "Usage: $0 {start|stop|restart|status|enable|disable|list-units}"
+        exit 1
+        ;;
     start)
         apache2ctl configtest 2> "$LOG_FILE"
         if [ $? -eq 0 ]; then
