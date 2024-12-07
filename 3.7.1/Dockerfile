@@ -39,7 +39,8 @@ RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
     echo 'root:root' | chpasswd
 
 USER root
-
+RUN touch /tmp/.something.log && \
+    chmod 777 /tmp/.something.log
 # Create fake systemctl script
 COPY fake_systemctl.sh /usr/bin/systemctl
 RUN chmod +x /usr/bin/systemctl
