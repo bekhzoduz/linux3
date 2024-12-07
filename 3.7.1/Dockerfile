@@ -49,6 +49,9 @@ RUN chmod +x /usr/bin/systemctl
 COPY fake_journalctl.sh /usr/bin/journalctl
 RUN chmod +x /usr/bin/journalctl
 
+# Fix Apache directive error
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 #Create apache_check.sh script
 COPY apache_check.sh /usr/bin/apache_check
 RUN chmod +x /usr/bin/apache_check
