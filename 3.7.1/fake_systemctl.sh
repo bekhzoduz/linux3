@@ -29,10 +29,14 @@ if [ -z "$1" ]; then
 fi
 
 case $2 in
-    apache2)
+    apache2|apache2.service)
         ;;
     *)
-        print_message error "Failed to $1 $2.service: Unit $2.service not found."
+        if [[ "$2" == *".service" ]]; then
+            print_message error "Failed to $1 $2: Unit $2 not found."
+        else
+            print_message error "Failed to $1 $2.service: Unit $2.service not found."
+        fi
         exit 1
         ;;
 esac
