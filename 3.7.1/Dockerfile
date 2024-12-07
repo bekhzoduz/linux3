@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     bsdutils \
     apache2 \
+    sysvinit-utils \
     apache2-bin \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
