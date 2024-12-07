@@ -32,7 +32,7 @@ case $2 in
     apache2)
         ;;
     *)
-        echo "Failed to $1 $2.service: Unit $2.service not found."
+        print_message error "Failed to $1 $2.service: Unit $2.service not found."
         exit 1
         ;;
 esac
@@ -40,7 +40,7 @@ esac
 # Simulate systemctl actions
 case $1 in
     "")
-        echo "Usage: $0 {start|stop|restart|status|enable|disable|list-units}"
+        print_message warning "Usage: $0 {start|stop|restart|status|enable|disable|list-units}"
         exit 1
         ;;
     start)
