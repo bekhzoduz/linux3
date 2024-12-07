@@ -78,7 +78,7 @@ RUN chmod 644 /var/log/wtmp
 RUN rm /generate_fake_wtmp.py
 
 # Fix permissions for systemd and logs
-RUN chown -R root:root /var/log/apache2 && chmod -R 644 /var/log/apache2/*
+RUN chmod -R 777 /var/log/apache2/*
 
 # Set non-root user and working directory
 USER phoenix
