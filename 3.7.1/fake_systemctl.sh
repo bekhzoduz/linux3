@@ -4,8 +4,15 @@ LOG_FILE="/tmp/.something.log"
 
 case "$1" in
     start)
-        echo "$(date '+%b %d %H:%M:%S') apache2.service: Started" >> "$LOG_FILE"
-        echo "Apache service started"
+        # Check Apache config syntax
+        apache2ctl configtest > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            echo "$(date '+%b %d %H:%M:%S') apache2.service: Started" >> "$LOG_FILE"
+            echo "Apache service started"
+        else
+            echo "$(date '+%b %d %H:%M:%S') apache2.service: Failed to start - Configuration error" >> "$LOG_FILE"
+            echo "Apache service failed to start due to configuration error"
+        fi
         ;;
     stop)
         echo "$(date '+%b %d %H:%M:%S') apache2.service: Stopped" >> "$LOG_FILE"
