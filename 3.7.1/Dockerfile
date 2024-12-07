@@ -65,10 +65,6 @@ RUN mkdir -p /var/log/apache2
 RUN touch /var/log/apache2/apache-custom.log
 RUN touch /var/log/apache2/apache-custom.log1
 
-COPY start-apache-service.sh /start-apache-service.sh
-RUN chmod +x /start-apache-service.sh && \
-    echo "/start-apache-service.sh" >> /home/phoenix/.bashrc
-
 # Copy the Python script into the container
 COPY generate_fake_wtmp.py /generate_fake_wtmp.py
 
