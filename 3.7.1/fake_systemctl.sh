@@ -23,6 +23,14 @@ print_message() {
     esac
 }
 
+case $2 in
+    apache2)
+        ;;
+    *)
+        echo "Failed to $1 $2.service: Unit $2.service not found."
+        exit 1
+        ;;
+
 # Simulate systemctl actions
 case "$1" in
     start)
@@ -40,8 +48,14 @@ case "$1" in
         print_message success "Apache service stopped."
         ;;
     restart)
-        log_action "apache2.service: Restarted"
-        print_message success "Apache service restarted."
+        apache2ctl configtest 2> "$LOG_FILE"
+        if [ $? -eq 0 ]; then
+            log_action "apache2.service: Restarted"
+            print_message success "Apache service restarted successfully."
+        else
+            log_action "apache2.service: Failed to restart - Configuration error"
+            print_message error "Apache service failed to restart due to configuration error."
+        fi
         ;;
     status)
         echo "apache2.service - Apache Web Server"
