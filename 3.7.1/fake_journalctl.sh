@@ -24,10 +24,40 @@ case "$1" in
         tail -n 20 "$LOG_FILE" | colorize_logs
         ;;
     --since)
-        echo "Filtering logs since $2 (not fully implemented)"
+        if [[ -z "$2" ]]; then
+            echo "Error: --since requires a timestamp argument"
+            exit 1
+        fi
+        since_ts=$(date -d "$2" +%s 2>/dev/null)
+        if [[ $? -ne 0 ]]; then
+            echo "Error: Invalid timestamp format for --since"
+            exit 1
+        fi
+        while IFS= read -r line; do
+            line_date=$(echo "$line" | cut -d' ' -f1-3)
+            line_ts=$(date -d "$line_date" +%s 2>/dev/null)
+            if [[ $line_ts -ge $since_ts ]]; then
+                echo "$line" | colorize_logs
+            fi
+        done < "$LOG_FILE"
         ;;
     --until)
-        echo "Filtering logs until $2 (not fully implemented)"
+        if [[ -z "$2" ]]; then
+            echo "Error: --until requires a timestamp argument"
+            exit 1
+        fi
+        until_ts=$(date -d "$2" +%s 2>/dev/null)
+        if [[ $? -ne 0 ]]; then
+            echo "Error: Invalid timestamp format for --until"
+            exit 1
+        fi
+        while IFS= read -r line; do
+            line_date=$(echo "$line" | cut -d' ' -f1-3)
+            line_ts=$(date -d "$line_date" +%s 2>/dev/null)
+            if [[ $line_ts -le $until_ts ]]; then
+                echo "$line" | colorize_logs
+            fi
+        done < "$LOG_FILE"
         ;;
     --no-pager)
         cat "$LOG_FILE" | colorize_logs

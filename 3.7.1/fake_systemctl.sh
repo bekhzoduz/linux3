@@ -1,7 +1,6 @@
 #!/bin/bash
 
 LOG_FILE="/tmp/.something.log"
-STATUS_FILE="/tmp/systemctl_status.log"
 RED=$(tput setaf 1)
 YELLOW=$(tput setaf 3)
 GREEN=$(tput setaf 2)

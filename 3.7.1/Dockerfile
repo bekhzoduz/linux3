@@ -1,4 +1,4 @@
-FROM jrei/systemd-ubuntu:20.04
+FROM ubuntu:20.04
 
 # Set non-interactive mode for apt-get
 ENV DEBIAN_FRONTEND=noninteractive
@@ -28,7 +28,11 @@ RUN apt-get update && apt-get install -y \
 # Ensure systemd directories exist
 RUN mkdir -p /run/systemd && \
     mkdir -p /var/log/journal && \
-    chmod 755 /var/log/journal
+    chmod 755 /var/log/journal && \
+    mkdir -p /var/run/apache2 && \
+    mkdir -p /var/lock/apache2 && \
+    chmod 755 /var/run/apache2 && \
+    chmod 755 /var/lock/apache2
 
 # Create users
 RUN useradd -m -d /home/phoenix -s /bin/bash phoenix && \
