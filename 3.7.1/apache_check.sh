@@ -3,7 +3,7 @@
 LOG_FILE="/tmp/.something.log"
 
 # Perform config test
-apache2ctl configtest &> "$LOG_FILE"
+apache2ctl configtest >> "$LOG_FILE" 2>&1
 
 # Append additional logs to simulate behavior
 if grep -q "Syntax OK" "$LOG_FILE"; then
